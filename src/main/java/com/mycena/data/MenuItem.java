@@ -14,21 +14,21 @@ public class MenuItem {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotEmpty(message = "Name is required.")
+	//@NotEmpty(message = "Name is required.")
     private String name;
-	@NotEmpty(message = "Hot Price is required.")
+	//@NotEmpty(message = "Hot Price is required.")
     private double hotPrice;
-	@NotEmpty(message = "Ice Price is required.")
+	//@NotEmpty(message = "Ice Price is required.")
     private double icePrice;
-	@NotEmpty(message = "Tag is required.")
+	//@NotEmpty(message = "Tag is required.")
     private String tag;
-	@NotEmpty(message = "Date is required.")
+	//@NotEmpty(message = "Date is required.")
     private Date cdate;
-	@NotEmpty(message = "Recommend is required.")
+	//@NotEmpty(message = "Recommend is required.")
     private int recommend;
-	@NotEmpty(message = "Original is required.")
+	//@NotEmpty(message = "Original is required.")
     private int original;
-	@NotEmpty(message = "Minute To Prepare is required.")
+	//@NotEmpty(message = "Minute To Prepare is required.")
     private int minToPrepare;
 	
 	public Long getId() {		return id;	}

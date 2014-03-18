@@ -1,52 +1,30 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
   <head>
-    <title tiles:fragment="title">Messages : View All</title>
-   
+    <title tiles:fragment="title"></title>
   </head>
   <body>
     <div tiles:fragment="content">
-    <script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    
-        <h1>Inbox</h1>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                	<th>ID</th>
-                	<th>Name</th>
-                    <th>Hot Price</th>
-                    <th>Ice Price</th>
-                    <th>Tag</th>
-                	<th>Recommend</th>
-                    <th>Original</th>
-                    <th>Minute To Prepare</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:if="${menuitems.empty}">
-                    <td colspan="3">No messages</td>
-                  </tr>
-                  <tr th:each="menuitem : ${menuitems}">
-                    <td th:text="${menuitem.id}">id</td>
-                    <td th:text="${menuitem.name}">name</td>
-                    <td th:text="${menuitem.hotPrice}">hotprice</td>
-                    <td th:text="${menuitem.icePrice}">iceprice</td>
-                    <td th:text="${menuitem.tag}">tag</td>
-                    <td th:text="${menuitem.recommend}">recommend</td>
-                     <td th:text="${menuitem.original}">original</td>
-                     <td th:text="${menuitem.minToPrepare}">mintoprepare</td>
-                    <td th:text="${#calendars.format(menuitem.cdate)}">date</td>                   
-                </tr>
-            </tbody>
-        </table>
-        <!-- <script th:inline="javascript">
-		/*<![CDATA[*/
-		    var div = document.getElementById('orderList');
-		    
-    		setInterval(function(){window.location.reload();},3000);
-		/*]]>*/
-	</script> -->
+        
+	        <fieldset>
+	            <legend>User Information</legend>
+	            <label for="name">Name: <span th:text="${menuItems.name}"></span></label>
+	            <label for="hotprice">Hot Price: <span th:text="${menuItems.hotPrice}"></span></label>      
+                <label for="iceprice">Ice Price: <span th:text="${menuItems.icePrice}"></span></label>  
+	            <label for="tag">Tag:<span th:text="${menuItems.tag}"></span></label>
+	            <label for="recommed">Recommend: <span th:text="${menuItems.recommend}"></span></label>
+	            <label for="original">Original: <span th:text="${menuItems.original}"></span></label>
+	            <label for="mintoprepare">Minute to Prepare: <span th:text="${menuItems.minToPrepare}"></span></label>          
+	        </fieldset>
+			<form action="#" th:action="@{/menu/delete/}" th:object="${menuItemForm}"  method="post">
+					  <fieldset>
+					  
+					 <input type="hidden" th:value="${menuItems.id}" name="id"/>
+					 
+					 <div id="submit">
+                     <input type="submit" value="Delete"/>
+                      </div>
+                      </fieldset>
+			</form>
     </div>
-    
   </body>
 </html>
