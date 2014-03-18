@@ -57,7 +57,7 @@ public class DataConfiguration {
     	
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
     	dataSource.setDriverClassName("org.h2.Driver");
-    	dataSource.setUrl("jdbc:h2:mem:teapatea;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS TEST");
+    	dataSource.setUrl("jdbc:h2:mem:teapatea?useUnicode=yes&characterEncoding=utf8;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS TEST");
     	dataSource.setUsername("sa");
     	dataSource.setPassword("");
     	return dataSource;

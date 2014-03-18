@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+.menuSelect select, .menuSelect input{
+	width: 80px;
+}

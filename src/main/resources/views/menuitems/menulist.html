@@ -1,52 +1,140 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
   <head>
     <title tiles:fragment="title">Messages : View All</title>
-   
   </head>
   <body>
     <div tiles:fragment="content">
     <script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    
-        <h1>Inbox</h1>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                	<th>ID</th>
-                	<th>Name</th>
-                    <th>Hot Price</th>
-                    <th>Ice Price</th>
-                    <th>Tag</th>
-                	<th>Recommend</th>
-                    <th>Original</th>
-                    <th>Minute To Prepare</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:if="${menuitems.empty}">
-                    <td colspan="3">No messages</td>
-                  </tr>
-                  <tr th:each="menuitem : ${menuitems}">
-                    <td th:text="${menuitem.id}">id</td>
-                    <td th:text="${menuitem.name}">name</td>
-                    <td th:text="${menuitem.hotPrice}">hotprice</td>
-                    <td th:text="${menuitem.icePrice}">iceprice</td>
-                    <td th:text="${menuitem.tag}">tag</td>
-                    <td th:text="${menuitem.recommend}">recommend</td>
-                     <td th:text="${menuitem.original}">original</td>
-                     <td th:text="${menuitem.minToPrepare}">mintoprepare</td>
-                    <td th:text="${#calendars.format(menuitem.cdate)}">date</td>                   
-                </tr>
-            </tbody>
-        </table>
-        <!-- <script th:inline="javascript">
-		/*<![CDATA[*/
-		    var div = document.getElementById('orderList');
-		    
-    		setInterval(function(){window.location.reload();},3000);
-		/*]]>*/
-	</script> -->
+    	<div class="span7">
+	        <h4>Order Menu</h4>
+	       	<div class="orderMenu">
+	       		<h5>ABC</h5>
+	       		 <table class="table table-bordered table-striped">
+		            <thead>
+		                <tr>
+		                	<th>Name</th>
+		                    <th>Hot Price</th>
+		                    <th>Ice Price</th>
+		                    <th>Tag</th>
+		                	<th>Recommend</th>
+		                    <th>Original</th>
+		                    <th>Sweetness</th>
+		                    <th>Ice cubes</th>
+		                    <th>Quantity</th>
+		                    <th>Order</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<form action="" method="POST">
+			            	<tr th:if="${menuitems.empty}">
+			                    <td colspan="3">No messages</td>
+			                </tr>
+				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == 'abc'}">
+				                	<td th:text="${menuitem.name}">name</td>
+				                    <td th:text="${menuitem.hotPrice}">hotprice</td>
+				                    <td th:text="${menuitem.icePrice}">iceprice</td>
+				                    <td th:text="${menuitem.tag}">tag</td>
+				                    <td th:text="${menuitem.recommend}">recommend</td>
+				                    <td th:text="${menuitem.original}">original</td>
+				                    <th th:field="*{sweetness}" class="menuSelect">
+										<select>
+										  <option value="0">無糖</option>
+										  <option value="1">微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</th>
+				                    <th th:field="*{ice}" class="menuSelect">
+										<select>
+										  <option value="0">去冰</option>
+										  <option value="1">少冰</option>
+										  <option value="2">正常</option>
+										</select> 
+									</th> 
+				                    <th class="menuSelect">
+										<input type="number" name="quantity" min="1" max="5"></input>
+									</th>
+				                    <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+		            	</form>
+		            </tbody>
+		        </table>
+	       		<h5>efg</h5>
+		         <table class="table table-bordered table-striped">
+		            <thead>
+		                <tr>
+		                	<th>Name</th>
+		                    <th>Hot Price</th>
+		                    <th>Ice Price</th>
+		                    <th>Tag</th>
+		                	<th>Recommend</th>
+		                    <th>Original</th>
+		                    <th>Sweetness</th>
+		                    <th>Ice cubes</th>
+		                    <th>Quantity</th>
+		                    <th>Order</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<form action="" method="POST">
+			            	<tr th:if="${menuitems.empty}">
+			                    <td colspan="3">No messages</td>
+			                </tr>
+				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == 'efg'}">
+				                	<td th:text="${menuitem.name}">name</td>
+				                    <td th:text="${menuitem.hotPrice}">hotprice</td>
+				                    <td th:text="${menuitem.icePrice}">iceprice</td>
+				                    <td th:text="${menuitem.tag}">tag</td>
+				                    <td th:text="${menuitem.recommend}">recommend</td>
+				                    <td th:text="${menuitem.original}">original</td>
+				                    <th th:field="*{sweetness}" class="menuSelect">
+										<select>
+										  <option value="0">無糖</option>
+										  <option value="1">微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</th>
+				                    <th th:field="*{ice}" class="menuSelect">
+										<select>
+										  <option value="0">去冰</option>
+										  <option value="1">少冰</option>
+										  <option value="2">正常</option>
+										</select> 
+									</th> 
+				                    <th class="menuSelect">
+										<input type="number" name="quantity" min="1" max="5"></input>
+									</th>
+				                    <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+		            	</form>
+		            </tbody>
+		        </table>
+	       	</div>
+	        <!-- <script th:inline="javascript">
+			/*<![CDATA[*/
+			    var div = document.getElementById('orderList');
+			    
+	    		setInterval(function(){window.location.reload();},3000);
+			/*]]>*/
+		</script> -->    	
+    	</div>
+    	<div class="span4">
+	        <h1>Order Menu</h1>
+	        <table class="table table-bordered table-striped">
+	                <tr>
+	                	<td>蔗香烏龍</td>
+	                	<td>冰</td>
+	                	<td>無糖</td>
+	                	<td>少冰</td>
+	                	<td>珍珠</td>
+	                	<td>25</td>
+	                </tr>
+	        </table>
+    	</div>
+
     </div>
-    
   </body>
 </html>

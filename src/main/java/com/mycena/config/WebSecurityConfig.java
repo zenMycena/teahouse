@@ -35,13 +35,14 @@ public class WebSecurityConfig
 		.csrf().disable()
 		.headers().disable()
 		 .authorizeRequests()
-		 	.antMatchers("/resources/**", "/signup").permitAll()
-		 	.anyRequest().authenticated()
+		 	/*.antMatchers("/resources/**", "/signup").permitAll()
+		 	.anyRequest().authenticated()*/
+		 	.anyRequest().anonymous()
 		 	.and()
-		 .formLogin()
+		 /*.formLogin()
 		 	.loginPage("/login")
 		 	.permitAll()
-		 	.and()
+		 	.and()*/
 		 .logout()
 		 	.permitAll();
 	}

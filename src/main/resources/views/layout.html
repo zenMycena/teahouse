@@ -3,9 +3,11 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org">
   <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title tiles:include="title">SecureMail:</title>
     <link rel="icon" type="image/x-icon" th:href="@{/resources/img/favicon.ico}" href="../resources/img/favicon.ico"/>
     <link th:href="@{/resources/css/bootstrap.css}" href="../resources/css/bootstrap.css" rel="stylesheet"></link>
+    <link href="../resources/css/styles.css" rel="stylesheet"></link>
     <style type="text/css">
       /* Sticky footer styles
       -------------------------------------------------- */
@@ -102,15 +104,17 @@
       </div>
     </div>
       <!-- Begin page content -->
-      <div class="container">
-        <div class="alert alert-success"
-              th:if="${globalMessage}"
-              th:text="${globalMessage}">
-            Some Success message
-        </div>
-        <div tiles:substituteby="content">
-            Fake content
-        </div>
+      <div class="container-fluid">
+      	<div class="row-fluid">
+      		<div class="alert alert-success"
+	              th:if="${globalMessage}"
+	              th:text="${globalMessage}">
+	            Some Success message
+	        </div>
+	        <div tiles:substituteby="content">
+	            Fake content
+	        </div>
+      	</div>
       </div>
 
       <div id="push"><!--  --></div>
