@@ -1,4 +1,14 @@
 @CHARSET "UTF-8";
+.header .brand img{
+	height: 40px;
+}
+
+.banner h3.shopName{
+    background: url("../img/logo2.png") no-repeat scroll 50% center rgba(0, 0, 0, 0);
+    height: 105px;
+    color: transparent;
+}
+
 .menuSelect select, .menuSelect input{
 	width: 80px;
 }

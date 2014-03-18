@@ -78,34 +78,39 @@
 
 
   <body>
-    <div id="wrap">
-      <div class="navbar navbar-inverse navbar-static-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="brand" th:href="@{/}"><img th:src="@{/resources/img/logo.png}" alt="Spring Security Sample"/></a>
-
-			<div class="nav-collapse collapse" 
-			     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-			  <div th:if="${currentUser != null}">
-			      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-			          <input type="submit" value="Log out" />
-			      </form>
-			      <p class="navbar-text pull-right" th:text="${currentUser}">
-			        sample_user
-			      </p>
-			  </div>
-			  <ul class="nav">
-			    <li><a th:href="@{/}">Inbox</a></li>
-			    <li><a th:href="@{/(form)}">Compose</a></li>
-			  </ul>
-			</div>
-
-        </div>
-      </div>
-    </div>
+	<div id="wrap">
+		<div class="navbar navbar-inverse navbar-static-top">
+	        <div class="navbar-inner">
+	          <div class="container">
+	            <div class="header">
+	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
+	
+					<div class="nav-collapse collapse" 
+					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+					  <div th:if="${currentUser != null}">
+					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+					          <input type="submit" value="Log out" />
+					      </form>
+					      <p class="navbar-text pull-right" th:text="${currentUser}">
+					        sample_user
+					      </p>
+					  </div>
+					  <ul class="nav">
+					    <li><a th:href="@{/}">Inbox</a></li>
+					    <li><a th:href="@{/(form)}">Compose</a></li>
+					  </ul>
+					</div>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
       <!-- Begin page content -->
+      
       <div class="container-fluid">
       	<div class="row-fluid">
+      		<div class="banner">
+				<h3 class="shopName">茶湯會</h3>
+			</div>
       		<div class="alert alert-success"
 	              th:if="${globalMessage}"
 	              th:text="${globalMessage}">
