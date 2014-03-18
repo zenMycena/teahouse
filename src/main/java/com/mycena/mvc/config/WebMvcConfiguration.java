@@ -63,6 +63,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         result.setPrefix("views/");
         result.setSuffix(".html");
         result.setTemplateMode("HTML5");
+        result.setCharacterEncoding("UTF-8");
         return result;
     }
 
@@ -88,6 +89,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         viewResolver.setViewClass(ThymeleafTilesView.class);
         viewResolver.setCache(false);
         viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setContentType("text/html;charset=UTF-8");
         return viewResolver;
     }
 
