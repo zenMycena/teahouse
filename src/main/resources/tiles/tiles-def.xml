@@ -14,14 +14,14 @@
   <definition name="head/messages/*"      	 template="messages/{1} :: /html/head/link"/>
 
 <!--******************   User ******************-->
-  <definition name="user/*"      	template="layout">
-    <put-attribute name="content"   value="content/user/{1}"/>
-    <put-attribute name="title"     value="title/user/{1}"/>
-    <put-attribute name="head"      value="head/user/{1}"/>
+  <definition name="users/*"      	template="layout">
+    <put-attribute name="content"   value="content/users/{1}"/>
+    <put-attribute name="title"     value="title/users/{1}"/>
+    <put-attribute name="head"      value="head/users/{1}"/>
   </definition>
-<!--   <definition name="content/user/*"    template="user/{1} :: content"/> -->
-<!--   <definition name="title/user/*"      template="user/{1} :: title"/> -->
-<!--   <definition name="head/user/*"       template="user/{1} :: /html/head/link"/> -->
+  <definition name="content/users/*"    template="users/{1} :: content"/>
+  <definition name="title/users/*"      template="users/{1} :: title"/>
+  <definition name="head/users/*"       template="users/{1} :: /html/head/link"/>
 
 <!--******************  Root  ******************-->
   <definition name="*"      		template="layout">

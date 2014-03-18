@@ -1,8 +1,8 @@
-insert into user(id,email,password,firstname,lastname) values (0,'rob@example.com','password','Rob','Winch');
-insert into user(id,email,password,firstname,lastname) values (1,'luke@example.com','password','Luke','Taylor');
+insert into user(id,name,account,password,email,phone,address) values (1,'Jim','jim0123','1234','jim1234@gmail.com','0987654321','cha-ha-er st.2');
+insert into user(id,name,account,password,email,phone,address) values (2,'Tom','tom0123','1234','tom1234@gmail.com','0912345678','cha-ha-er st.1');
 
-insert into message(id,created,to_id,summary,text) values (100,'2013-10-04 10:00:00',0,'Hello Rob','This message is for Rob');
-insert into message(id,created,to_id,summary,text) values (110,'2013-10-04 10:00:00',1,'Hello Luke','This message is for Luke');
+insert into message(id,created,to_id,summary,text) values (100,'2013-10-04 10:00:00',1,'Hello Rob','This message is for Rob');
+insert into message(id,created,to_id,summary,text) values (110,'2013-10-04 10:00:00',2,'Hello Luke','This message is for Luke');
 
 insert into menuitem(id,name,hotprice,iceprice,tag,cdate,recommend,original,mintoprepare) values
 (1,'蔗香烏龍',20.00,20.00,'原味茶','2013-10-04 10:00:00',0,0,2),

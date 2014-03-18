@@ -18,18 +18,25 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class MenuItemController {
-	private MessageRepository messageRepository;
-    private UserRepository userRepository;
     private MenuItemRepository menuItemRepository;
     @Autowired
-    public MenuItemController(MessageRepository messageRepository,UserRepository userRepository, MenuItemRepository menuItemRepository) {
-        this.messageRepository = messageRepository;
-        this.userRepository = userRepository;
+    public MenuItemController(MenuItemRepository menuItemRepository) {
+
         this.menuItemRepository = menuItemRepository;
     }
-
+    
+    /**************     CREATE      ***************/
+    @RequestMapping(value="menu/create",method=RequestMethod.GET)
+    public ModelAndView addPage() {
+    	
+			return new ModelAndView("menuitems/menulistCreate");
+		
+    	
+    }
+    
+    /**************     READ      ***************/
     @RequestMapping(method=RequestMethod.GET)
-    public ModelAndView list() {
+    public ModelAndView getList() {
     	ArrayList<MenuItem> al = new ArrayList<>();
         long maxOrder;
     	if (al.size() == 0) {
@@ -46,4 +53,6 @@ public class MenuItemController {
 		}
     	
     }
+    /**************     UPDATE      ***************/
+    /**************     DELETE      ***************/
 }

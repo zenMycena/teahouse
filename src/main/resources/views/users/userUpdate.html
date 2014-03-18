@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title"></title>
+  </head>
+  <body>
+    <div tiles:fragment="content">
+        
+	        <fieldset>
+	            <legend>User Information</legend>       
+	            <label for="account">Account: <span th:text="${users.account}"></span></label>
+	            <label for="password">Password: <span th:text="${users.password}"></span></label>      
+                <label for="name">Username: <span th:text="${users.name}"></span></label>  
+	            <label for="phone">Phone:<span th:text="${users.phone}"></span></label>
+	            <label for="email">Email: <span th:text="${users.email}"></span></label>
+	            <label for="address">Address: <span th:text="${users.address}"></span></label>          
+	        </fieldset>
+			<form action="#" th:action="@{/user/edit/}" th:object="${userForm}"  method="post">
+					  <fieldset>
+					  <legend>User Information Edit</legend> 
+					 <input type="hidden" th:value="${users.account}" name="account"/>
+					 <label for="name">Name:</label>
+					 <input type="text" th:field="*{name}" />
+					 <label for="password">Password:</label>
+					 <input type="password" th:field="*{password}" />
+					 <label for="phone">Phone:</label>
+					 <input type="text" th:field="*{phone}" />
+					 <label for="email">Email:</label>
+					 <input type="text" th:field="*{email}" />
+					 <label for="address">Address:</label>
+					 <input type="text" th:field="*{address}" />
+					 
+					 <div id="submit">
+                     <input type="submit" value="Update"/>
+                      </div>
+                      </fieldset>
+			</form>
+    </div>
+  </body>
+</html>

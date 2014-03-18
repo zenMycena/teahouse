@@ -41,67 +41,58 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "First name is required.")
-    private String firstName;
-
-    @NotEmpty(message = "Last name is required.")
-    private String lastName;
-
+    @NotEmpty(message = "Name is required.")
+    private String name;    
+    @NotEmpty(message = "Account is required.")
+    @Column(unique=true, nullable = false)
+    private String account;
+    @NotEmpty(message = "Password is required.")
+    private String password;
     @Email(message = "Please provide a valid email address.")
     @NotEmpty(message = "Email is required.")
     @Column(unique=true, nullable = false)
     private String email;
-
-    @NotEmpty(message = "Password is required.")
-    private String password;
-
+    @NotEmpty(message = "Phone is required.")
+    private String phone;
+    @NotEmpty(message = "Address is required.")
+    private String address;
+    
     public User() {}
 
     public User(User user) {
         this.id = user.id;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
+        this.name = user.name;
+        this.account = user.account;
         this.password = user.password;
+        this.email = user.email;
+        this.phone = user.phone;
+        this.address = user.address;       
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public Long getId() {		return id;	}
+	public void setId(Long id) {		this.id = id;	}
+	public String getName() {		return name;	}
+	public void setName(String name) {		this.name = name;	}
+	public String getAccount() {		return account;	}
+	public void setAccount(String account) {		this.account = account;	}
+	public String getPassword() {		return password;	}
+	public void setPassword(String password) {		this.password = password;	}
+	public String getEmail() {		return email;	}
+	public void setEmail(String email) {		this.email = email;	}
+	public String getPhone() {		return phone;	}
+	public void setPhone(String phone) {		this.phone = phone;	}
+	public String getAddress() {		return address;	}
+	public void setAddress(String address) {		this.address = address; }
+    
+    
+ /*   public String getPassword() {        return password;    }
+    public void setPassword(String password) {        this.password = password;    }
+    public Long getId() {        return id;    }
+    public void setId(Long id) {        this.id = id;    }
+    public String getFirstName() {       return firstName;    }
+    public void setFirstName(String firstName) {        this.firstName = firstName;    }
+    public String getLastName() {        return lastName;    }
+    public void setLastName(String lastName) {       this.lastName = lastName;    }
+    public String getEmail() {        return email;    }
+    public void setEmail(String email) {        this.email = email;    }*/
 }
