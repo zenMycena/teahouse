@@ -87,6 +87,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         viewResolver.setTemplateEngine(templateEngine);
         viewResolver.setViewClass(ThymeleafTilesView.class);
         viewResolver.setCache(false);
+        viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 

@@ -15,6 +15,10 @@
  */
 package com.mycena.data;
 
+import java.util.List;
+
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.access.prepost.PostAuthorize;
 
@@ -30,4 +34,6 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 
     //@PostAuthorize("returnObject?.to?.id == principal?.id")
     Message findOne(Long id);
+    @Query("from Message where id > :id")
+    List<Message> findWithMaxOrder(long id);
 }

@@ -18,8 +18,10 @@ package com.mycena.config;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -30,8 +32,10 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.mycena.data.MenuItemRepository;
 import com.mycena.data.Message;
 import com.mycena.data.MessageRepository;
+import com.mycena.data.UserRepository;
 
 /**
  * Initializes spring Configuration for Spring Data and our {@link DataSource}.
@@ -40,7 +44,11 @@ import com.mycena.data.MessageRepository;
  *
  */
 @Configuration
-@EnableJpaRepositories(basePackageClasses = MessageRepository.class)
+@EnableJpaRepositories(basePackages="com.mycena.data",
+includeFilters = {@ComponentScan.Filter(value = {UserRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
+							  @ComponentScan.Filter(value = {MessageRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
+							  @ComponentScan.Filter(value = {MenuItemRepository.class}, type = FilterType.ASSIGNABLE_TYPE)
+						})
 public class DataConfiguration {
     @Bean
     public DataSource dataSource() {
