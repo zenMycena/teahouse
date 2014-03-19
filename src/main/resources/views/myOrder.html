@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title">My order detail</title>
+  </head>
+  <body>
+  	<div tiles:fragment="menubar">
+  		<div class="navbar navbar-inverse navbar-static-top">
+	        <div class="navbar-inner">
+	          <div class="container">
+	            <div class="header">
+	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
+	
+					<div class="nav-collapse collapse" 
+					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+					  <div th:if="${currentUser != null}">
+					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+					          <input type="submit" value="Log out" />
+					      </form>
+					      <p class="navbar-text pull-right" th:text="${currentUser}">
+					        sample_user
+					      </p>
+					  </div>
+					  <ul class="nav">
+					    <li><a class="active" th:href="@{myOrder}">My Order</a></li>
+					    <li><a th:href="@{logout}">Logout</a></li>
+					  </ul>
+					</div>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+  	</div>
+    <div tiles:fragment="content"  class="offset2 span8">
+       	<form>
+       		<h5>Dear customer, thank you for the order. We will delivery your beverages in
+       		<strong>30</strong> minutes</h5>
+       		<input type="submit" value="OK" class="btn btn-default"/>
+       	</form> 
+    </div>
+  </body>
+</html>

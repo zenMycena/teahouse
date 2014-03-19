@@ -7,7 +7,7 @@
     <title tiles:include="title">SecureMail:</title>
     <link rel="icon" type="image/x-icon" th:href="@{/resources/img/favicon.ico}" href="../resources/img/favicon.ico"/>
     <link th:href="@{/resources/css/bootstrap.css}" href="../resources/css/bootstrap.css" rel="stylesheet"></link>
-    <link href="../resources/css/styles.css" rel="stylesheet"></link>
+    <link th:href="@{/resources/css/styles.css}" href="../resources/css/styles.css" rel="stylesheet"></link>
     <style type="text/css">
       /* Sticky footer styles
       -------------------------------------------------- */
@@ -79,30 +79,8 @@
 
   <body>
 	<div id="wrap">
-		<div class="navbar navbar-inverse navbar-static-top">
-	        <div class="navbar-inner">
-	          <div class="container">
-	            <div class="header">
-	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
-	
-					<div class="nav-collapse collapse" 
-					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-					  <div th:if="${currentUser != null}">
-					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-					          <input type="submit" value="Log out" />
-					      </form>
-					      <p class="navbar-text pull-right" th:text="${currentUser}">
-					        sample_user
-					      </p>
-					  </div>
-					  <ul class="nav">
-					    <li><a th:href="@{/}">Inbox</a></li>
-					    <li><a th:href="@{/(form)}">Compose</a></li>
-					  </ul>
-					</div>
-	            </div>
-	        </div>
-	      </div>
+		<div tiles:substituteby="menubar">
+	            Fake content
 	    </div>
       <!-- Begin page content -->
       

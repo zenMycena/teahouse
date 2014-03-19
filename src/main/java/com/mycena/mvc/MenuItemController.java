@@ -59,12 +59,12 @@ public class MenuItemController {
     		for (MenuItem menuitem : menuitems) {
 				al.add(menuitem);
 			}
-    		return new ModelAndView("menuitems/menulist", "menuitems", menuitems);
+    		return new ModelAndView("menuitems/menulist_user", "menuitems", menuitems);
 		}else {
 			maxOrder = al.get(al.size()-1).getId();
 			List<MenuItem> menuitems = menuItemRepository.findWithMaxOrder(maxOrder);
 			al.addAll(menuitems);
-			return new ModelAndView("menuitems/menulist", "menuitems", al);
+			return new ModelAndView("menuitems/menulist_user", "menuitems", al);
 		}
     	
     }
