@@ -8,7 +8,7 @@
     	<div class="span7">
 	        <h4>Order Menu</h4>
 	       	<div class="orderMenu">
-	       		<h5>ABC</h5>
+	       		<h5>原味茶</h5>
 	       		 <table class="table table-bordered table-striped">
 		            <thead>
 		                <tr>
@@ -29,7 +29,7 @@
 			            	<tr th:if="${menuitems.empty}">
 			                    <td colspan="3">No messages</td>
 			                </tr>
-				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == 'abc'}">
+				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == '原味茶'}">
 				                	<td th:text="${menuitem.name}">name</td>
 				                    <td th:text="${menuitem.hotPrice}">hotprice</td>
 				                    <td th:text="${menuitem.icePrice}">iceprice</td>
@@ -60,7 +60,7 @@
 		            	</form>
 		            </tbody>
 		        </table>
-	       		<h5>efg</h5>
+	       		<h5>調味茶</h5>
 		         <table class="table table-bordered table-striped">
 		            <thead>
 		                <tr>
@@ -81,7 +81,7 @@
 			            	<tr th:if="${menuitems.empty}">
 			                    <td colspan="3">No messages</td>
 			                </tr>
-				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == 'efg'}">
+				                <tr th:each="menuitem : ${menuitems}"  th:if="${menuitem.tag == '調味茶'}">
 				                	<td th:text="${menuitem.name}">name</td>
 				                    <td th:text="${menuitem.hotPrice}">hotprice</td>
 				                    <td th:text="${menuitem.icePrice}">iceprice</td>

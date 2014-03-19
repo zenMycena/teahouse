@@ -34,6 +34,12 @@ public class MenuItemController {
     public String addMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
     	  MenuItem menuItem = new MenuItem();
     	  menuItem.setName(menuItemForm.getName());
+    	  menuItem.setHotPrice(menuItemForm.getHotPrice());
+    	  menuItem.setIcePrice(menuItemForm.getIcePrice());
+    	  menuItem.setTag(menuItemForm.getTag());
+    	  menuItem.setRecommend(menuItemForm.getRecommend());
+    	  menuItem.setOriginal(menuItemForm.getOriginal());
+    	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
     	 menuItemRepository.save(menuItem);
     	  return "redirect:/";
     }
