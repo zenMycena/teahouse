@@ -35,6 +35,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.mycena.data.MenuItemRepository;
 import com.mycena.data.Message;
 import com.mycena.data.MessageRepository;
+import com.mycena.data.OrderListRepository;
+import com.mycena.data.OrderRepository;
 import com.mycena.data.UserRepository;
 
 /**
@@ -47,6 +49,8 @@ import com.mycena.data.UserRepository;
 @EnableJpaRepositories(basePackages="com.mycena.data",
 includeFilters = {@ComponentScan.Filter(value = {UserRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
 							  @ComponentScan.Filter(value = {MessageRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
+							  @ComponentScan.Filter(value = {OrderListRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
+							  @ComponentScan.Filter(value = {OrderRepository.class}, type = FilterType.ASSIGNABLE_TYPE),
 							  @ComponentScan.Filter(value = {MenuItemRepository.class}, type = FilterType.ASSIGNABLE_TYPE)
 						})
 public class DataConfiguration {

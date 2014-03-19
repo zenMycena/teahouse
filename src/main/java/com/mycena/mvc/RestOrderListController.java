@@ -16,12 +16,12 @@ import com.mycena.data.OrderRepository;
 import com.mycena.data.Orders;
 
 @Controller
-public class GreetingController {
-
-/*	private OrderRepository orderRepository;
+public class RestOrderListController {
+		
+	private OrderRepository orderRepository;
 	private OrderListRepository orderListRepository;
     @Autowired
-    public GreetingController(OrderListRepository orderListRepository, OrderRepository orderRepository) {
+    public RestOrderListController(OrderListRepository orderListRepository, OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
         this.orderListRepository = orderListRepository;
     }
@@ -55,10 +55,21 @@ public class GreetingController {
   
     
     @RequestMapping("/finishorders")
-    public @ResponseBody List<OrderList> finishorders(@PathVariable int status) {
+    public @ResponseBody List<OrderList> finishorders() {
     	
         return orderListRepository.findByStatus(0);
         	
-    }*/
+    }
+    
+    @RequestMapping("/checkorder")
+    public @ResponseBody boolean checkorder() {
+    	if (true) {
+    		 return true;
+		}else {
+			 return false;
+		}
+       
+        	
+    }
     
 }
