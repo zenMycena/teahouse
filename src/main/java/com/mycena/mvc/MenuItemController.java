@@ -1,6 +1,8 @@
 package com.mycena.mvc;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.mycena.data.MenuItem;
@@ -23,7 +25,8 @@ public class MenuItemController {
     public MenuItemController(MenuItemRepository menuItemRepository) {
         this.menuItemRepository = menuItemRepository;
     }
-    
+    @Autowired
+	private Basket basket;
     /**************     CREATE      ***************/
     @RequestMapping(value="menu/create",method=RequestMethod.GET)
     public ModelAndView addPage(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm,String id) {
@@ -31,12 +34,13 @@ public class MenuItemController {
     }
     
     @RequestMapping(value="menu/create",method=RequestMethod.POST)
-    public String addMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
+    public String addMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
     	  MenuItem menuItem = new MenuItem();
     	  menuItem.setName(menuItemForm.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
     	  menuItem.setTag(menuItemForm.getTag());
+    	  menuItem.setCdate(new Date());
     	  menuItem.setRecommend(menuItemForm.getRecommend());
     	  menuItem.setOriginal(menuItemForm.getOriginal());
     	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
@@ -46,7 +50,8 @@ public class MenuItemController {
     
     /**************     READ      ***************/
     @RequestMapping(value="",method=RequestMethod.GET)
-    public ModelAndView getList() {
+    public ModelAndView getList(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
+    	
     	ArrayList<MenuItem> al = new ArrayList<>();
         long maxOrder;
     	if (al.size() == 0) {
@@ -63,6 +68,10 @@ public class MenuItemController {
 		}
     	
     }
+    @ModelAttribute("basket")
+	private Basket getBasket() {
+		return basket;
+	}
     
     /**************     UPDATE      ***************/
     @RequestMapping(value="menu/update/{id}",method=RequestMethod.GET)
@@ -72,12 +81,13 @@ public class MenuItemController {
     }
     
     @RequestMapping(value="menu/update",method=RequestMethod.POST)
-    public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
+    public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
     	  MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	  menuItem.setName(menuItemForm.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
     	  menuItem.setTag(menuItemForm.getTag());
+    	  menuItem.setCdate(new Date());
     	  menuItem.setRecommend(menuItemForm.getRecommend());
     	  menuItem.setOriginal(menuItemForm.getOriginal());
     	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());

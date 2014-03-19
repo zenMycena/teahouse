@@ -1,5 +1,9 @@
 package com.mycena.mvc;
 
+import java.io.UnsupportedEncodingException;
+
+import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
+
 
 public class MenuItemForm {
 	//@NotEmpty(message = "name is required.")
@@ -25,11 +29,28 @@ public class MenuItemForm {
     
     //@NotEmpty(message = "account is required.")
     private int minToPrepare;
-
+    
+    private int ice;
+    
+    private int sweetness;
+    
+    private int quantity;
+    
+    private double price;
+    
+    
+	public double getPrice() {		return price;	}
+	public void setPrice(double price) {		this.price = price;	}
+	public int getQuantity() {		return quantity;	}
+	public void setQuantity(int quantity) {		this.quantity = quantity;	}
+	public int getSweetness() {		return sweetness;	}
+	public void setSweetness(int sweetness) {		this.sweetness = sweetness;	}
+	public int getIce() {		return ice;	}	
+	public void setIce(int ice) {		this.ice = ice;	}
 	public long getId() {		return id;	}
 	public void setId(long id) {		this.id = id;	}
 	public String getName() {	return name;	}
-	public void setName(String name) {		this.name = name;	}
+	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes("ISO-8859-1"),"UTF-8");	}
 	public double getHotPrice() {		return hotPrice;	}
 	public void setHotPrice(double hotPrice) {		this.hotPrice = hotPrice;	}
 	public double getIcePrice() {		return icePrice;	}
