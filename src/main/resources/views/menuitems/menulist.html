@@ -39,10 +39,10 @@
 				                    <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
 				                    <input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
 	                                <input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
-				                    <th class="menuSelect">
+				                     <th class="menuSelect">
 										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
-										  <option value="0" >無糖</option>
-										  <option value="1" >微糖</option>
+										  <option value="0">無糖</option>
+										  <option value="1">微糖</option>
 										  <option value="2">半糖</option>
 										  <option value="3">少糖</option>
 										  <option value="4">正常</option>
@@ -58,8 +58,8 @@
 									</th> 
 				                    <th class="menuSelect">
 										<input type="number" name="quantity" min="1" max="5"></input>
-									</th>
-				                    <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</th>       
+				                    <th class="menuSelect"><input type="submit" value="Add"></input></th>       
 								</tr>
 		            	</form>
 		            </tbody>
@@ -140,7 +140,7 @@
 				       }        
 				      });
 			/*]]>*/
-		</script>
+			</script>
 		<div>
             <p class="greeting-id">The ID is </p>
             <p class="greeting-content">The content is </p>
