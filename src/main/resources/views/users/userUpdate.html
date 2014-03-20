@@ -3,37 +3,65 @@
     <title tiles:fragment="title"></title>
   </head>
   <body>
+  	<div tiles:fragment="menubar"></div>
     <div tiles:fragment="content">
-        
+        <div class="offset3 span6">
 	        <fieldset>
-	            <legend>User Information</legend>       
-	            <label for="account">Account: <span th:text="${users.account}"></span></label>
-	            <label for="password">Password: <span th:text="${users.password}"></span></label>      
-                <label for="name">Username: <span th:text="${users.name}"></span></label>  
-	            <label for="phone">Phone:<span th:text="${users.phone}"></span></label>
-	            <label for="email">Email: <span th:text="${users.email}"></span></label>
-	            <label for="address">Address: <span th:text="${users.address}"></span></label>          
+	            <h3 class="form-title">User Information</h3>       
+	            <table class="flat-table">
+	            	<tr>
+	            		<td>Account:</td>
+	            		<td th:text="${users.account}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Password:</td>
+	            		<td th:text="${users.password}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Username:</td>
+	            		<td th:text="${users.name}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Phone:</td>
+	            		<td th:text="${users.phone}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Email:</td>
+	            		<td th:text="${users.email}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Address:</td>
+	            		<td th:text="${users.address}"></td>
+	            	</tr>
+	            </table>
+	            
+	            <!-- <label class="form-label" for="account">Account: <span th:text="${users.account}"></span></label>
+	            <label class="form-label" for="password">Password: <span th:text="${users.password}"></span></label>      
+                <label class="form-label" for="name">Username: <span th:text="${users.name}"></span></label>  
+	            <label class="form-label" for="phone">Phone:<span th:text="${users.phone}"></span></label>
+	            <label class="form-label" for="email">Email: <span th:text="${users.email}"></span></label>
+	            <label class="form-label" for="address">Address: <span th:text="${users.address}"></span></label>   -->        
 	        </fieldset>
-			<form action="#" th:action="@{/user/edit/}" th:object="${userForm}"  method="post">
-					  <fieldset>
-					  <legend>User Information Edit</legend> 
-					 <input type="hidden" th:value="${users.account}" name="account"/>
-					 <label for="name">Name:</label>
-					 <input type="text" th:field="*{name}" />
-					 <label for="password">Password:</label>
-					 <input type="password" th:field="*{password}" />
-					 <label for="phone">Phone:</label>
-					 <input type="text" th:field="*{phone}" />
-					 <label for="email">Email:</label>
-					 <input type="text" th:field="*{email}" />
-					 <label for="address">Address:</label>
-					 <input type="text" th:field="*{address}" />
-					 
-					 <div id="submit">
-                     <input type="submit" value="Update"/>
-                      </div>
-                      </fieldset>
+			<form class="application-form form-horizontal" role="form" action="#" th:action="@{/user/edit/}" th:object="${userForm}"  method="post">
+				<fieldset>
+					<h3 class="form-title">User Information Edit</h3>
+					<input class="form-input" type="hidden" th:value="${users.account}" name="account" placeholder="What's your username?" />
+					<label class="form-label" for="name">name:</label>
+					<input class="form-input" type="text"   th:field="*{name}" placeholder="Your new name?" />
+					<label class="form-label"  for="password">password:</label>
+					<input class="form-input" type="password"   th:field="*{password}" placeholder="Your new password?" />	 
+					<label class="form-label"  for="phone">phone:</label>
+					<input class="form-input" type="phone"   th:field="*{phone}" placeholder="Your new phone?" /> 
+					<label class="form-label"  for="email">email:</label>
+					<input class="form-input" type="email"   th:field="*{email}" placeholder="Your new email?" /> 
+					<label class="form-label"  for="phone">phone:</label>
+					<input class="form-input" type="text"   th:field="*{address}" placeholder="Your new phone?" />
+					<input class="form-button" type="submit" value="Update" />
+				</fieldset>
 			</form>
     </div>
+        
+        
+        </div>
   </body>
 </html>
