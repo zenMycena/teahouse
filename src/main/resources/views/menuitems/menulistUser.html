@@ -1,0 +1,558 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+	<head>
+		<title tiles:fragment="title">Hello! Welcome Back!</title>
+	</head>
+	<body>
+		<div tiles:fragment="menubar">
+			<div class="navbar navbar-inverse navbar-static-top">
+		    	<div class="navbar-inner">
+					<div class="container">
+						<div class="header">
+				         	<a class="brand" th:href="@{/}">
+				         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
+				         	</a>
+				
+							<div class="nav-collapse collapse" 
+							     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+								  <div th:if="${currentUser != null}">
+								      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+								          <input type="submit" value="Log out" />
+								      </form>
+								      <p class="navbar-text pull-right" th:text="${currentUser}">
+								        sample_user
+								      </p>
+								  </div>
+								  <ul class="nav">
+									   <li><a th:href="@{myOrder}">My Order</a></li>
+									   <li><a th:href="@{logout}">Logout</a></li>
+								  </ul>
+							</div>
+				        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div tiles:fragment="content">
+		<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+			<div class="form-horizontal span7 application-form">
+				<fieldset>
+					
+				<h4 class="form-title">Menu List</h4>
+				<div class="orderMenu span12">
+		    		<h5>熱門排行</h5>
+		    		<table class="table table-bordered table-striped">
+			    		<thead>
+			            	<tr>
+				              	<th>品名</th>
+								<th>價格(熱)</th>
+								<th>價格(冰)</th>
+				                  <!-- <th>種類</th> -->
+				              	<th>推薦</th>
+								<th>Original</th>
+								<th>甜度</th>
+								<th>冰塊</th>
+								<th>杯數</th>
+								<th>order</th>
+			            	</tr>
+			          	</thead>
+		          		<tbody th:each="menuitem : ${menuitems}">
+		          	
+			           		<tr th:if="${menuitems.empty}">
+			                	<td colspan="3">No messages</td>
+			               	</tr>
+			                <form action="" method="POST" th:action="@{/basket/add}"> 
+								<tr th:if="${menuitem.tag == '原味茶'}">
+				                	<td th:text="${menuitem.name}">name</td>
+				                    <td th:text="${menuitem.hotPrice}">hotPrice</td>
+				                    <td th:text="${menuitem.icePrice}">icePrice</td>
+				                    <!-- <td th:text="${menuitem.tag}">tag</td> -->
+				                    <td th:text="${menuitem.recommend}">recommend</td>
+				                    <td th:text="${menuitem.original}">original</td>
+				                    	<input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+				                        <input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+				                        <input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+				                   
+				                    <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+											<option value="0" >無糖</option>
+											<option value="1" >微糖</option>
+											<option value="2">半糖</option>
+											<option value="3">少糖</option>
+											<option value="4">正常</option>
+										</select> 
+									</td>
+				                    <td class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</td> 
+				                    <td class="menuSelect">
+										<input type="number" name="quantity" value="0" min="1"></input>
+									</td>
+				                    <td class="menuSelect"><input type="submit" value="Add"></input></td>              
+								</tr>
+		          			</form>
+		          		</tbody>
+		      		</table>
+					<h5>原味茶</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '原味茶'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>
+					<h5>調味茶</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '調味茶'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>		    		
+					<h5>奶香茶</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '奶香茶'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>			    		
+					<h5>溫心熱飲(冬季限定)</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '冬季限定'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>					
+					<h5>新鮮茶</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '新鮮茶'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>					
+					<h5>拿鐵茶</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '拿鐵茶'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>					
+					<h5>夏季限定</h5>
+		    		<table class="table table-bordered table-striped">
+						<thead>
+						    <tr>
+						    	<th>品名</th>
+						        <th>價格(熱)</th>
+						        <th>價格(冰)</th>
+						        <!-- <th>種類</th> -->
+						    	<th>推薦</th>
+						        <th>Original</th>
+						        <th>甜度</th>
+						        <th>冰塊</th>
+						        <th>杯數</th>
+						        <th>order</th>
+						    </tr>
+						</thead>
+						<tbody th:each="menuitem : ${menuitems}" >
+							<tr th:if="${menuitems.empty}">
+						    	<td colspan="3">No messages</td>
+						    </tr>
+						    <form action="" method="POST" th:action="@{/basket/add}">
+						    	<tr  th:if="${menuitem.tag == '夏季限定'}">
+						      		<td th:text="${menuitem.name}">name</td>
+						          	<td th:text="${menuitem.hotPrice}">hotPrice</td>
+						          	<td th:text="${menuitem.icePrice}">icePrice</td>
+						          	<!-- <td th:text="${menuitem.tag}">tag</td> -->
+						           	<td th:text="${menuitem.recommend}">recommend</td>
+						         	<td th:text="${menuitem.original}">original</td>
+						                <input id="name" name="name" type="hidden" th:value="${menuitem.name}"/>
+										<input id="hotPrice" name="hotPrice" type="hidden" th:value="${menuitem.hotPrice}"/>
+										<input id="icePrice" name="icePrice" type="hidden" th:value="${menuitem.icePrice}"/>
+						            <td  class="menuSelect">
+										<select th:field="*{sweetness}"  th:object="${menuItemForm}">
+										  <option value="0" >無糖</option>
+										  <option value="1" >微糖</option>
+										  <option value="2">半糖</option>
+										  <option value="3">少糖</option>
+										  <option value="4">正常</option>
+										</select> 
+									</td>
+						            <th class="menuSelect">
+										<select th:field="*{ice}" th:object="${menuItemForm}">
+											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
+											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
+											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
+										</select> 
+									</th> 
+						            <th class="menuSelect">
+										<input type="number" name="quantity" min="1" value="0"></input>
+									</th>
+						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+								</tr>
+							</form>
+						</tbody>
+					</table>	      	      
+				</div>
+		    <!--  <script th:inline="javascript">
+		/*<![CDATA[*/
+		    
+			    $.ajax({
+			        url: "http://localhost:8080/getorderlist",
+			        type: "GET",
+			        dataType: "json",
+			        success: function(Jdata) {
+			        	$('.greeting-id').append(Jdata[0].id);
+			        	$('.greeting-content').append(Jdata[0].username);
+			        }, 
+			          error: function() {      
+			            alert("ERROR!!!");
+			       }        
+			      });
+		/*]]>*/
+		
+		
+		
+		</script>   -->
+			
+				
+				
+				
+				</fieldset>
+			</div>
+			<div class="form-horizontal span4 application-form">
+				<fieldset>
+				    <h4 class="form-title">Order list</h4>
+				    <table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+				            	<td>名稱</td>
+				             	<td>冰塊</td>
+				             	<td>甜度</td>
+				             	<!-- <td>珍珠</td> -->
+				             	<td>杯數</td>
+				             	<td>價錢</td>
+				            </tr>
+						</thead>
+						<tbody>
+							<tr th:each="basketItem : ${basket.items}">
+								<td th:text="${basketItem.name}"></td>
+								<td th:text="${basketItem.ice}">冰</td>
+								<td th:text="${basketItem.sweetness}">無糖</td>
+								<!-- <td>不加</td> -->
+								<td th:text="${basketItem.quantity}">杯數</td>
+								<td  th:text="${basketItem.price}">價錢</td>	
+							</tr>
+						</tbody>
+						<tbody>
+							<tr >
+									<th>總杯數</th>
+									<td th:text="${basket.quantity}" colspan="1">總杯數</td>
+									<th>總價錢</th>
+						              	<td th:text="${basket.price}" colspan="2">總價錢</td>
+						          </tr>
+						</tbody>
+				     </table>
+				
+				</fieldset>
+			     <a class="linkBtn pull-right" href="deliveryDetail">Order</a>
+		     </div>
+		</div>
+	</body>
+</html>

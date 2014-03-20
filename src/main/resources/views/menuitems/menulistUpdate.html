@@ -1,64 +1,122 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-    <title tiles:fragment="title"></title>
-  </head>
-  <body>
-  	<div tiles:fragment="menubar"></div>
-    <div tiles:fragment="content">
-		<div class="form-horizontal offset3 span6 application-form">
-	        <fieldset>
-	            <h4 class="form-title" th:text="${menuItems.name}">Delivery Information</h4>       
-	            <table class="flat-table">
-		            	<tr>
-	            		<td>熱飲價格</td>
-	            		<td><span th:text="${menuItems.hotPrice}"></span></td>
-	            	</tr>
-	            	<tr>
-	            		<td>冰飲價格</td>
-	            		<td><span th:text="${menuItems.icePrice}"></span></td>
-	            	</tr>
-	            	<tr>
-	            		<td>種類</td>
-	            		<td><span th:text="${menuItems.tag}"></span></td>
-	            	</tr>
-	            	<tr>
-	            		<td>大力推薦</td>
-	            		<td><span th:text="${menuItems.recommend}"></span></td>
-	            	</tr>
-	            	<tr>
-	            		<td>不提共去冰</td>
-	            		<td><span th:text="${menuItems.original}"></span></td>
-	            	</tr>
-	            	<tr>
-	            		<td>準備時間</td>
-	            		<td><span th:text="${menuItems.minToPrepare}"></span></td>
-	            	</tr>
-	            </table> 
-	        </fieldset>	      
+	<head>
+		<title tiles:fragment="title">Menu update</title>
+	</head>
+	<body>
+	<div tiles:fragment="menubar">
+		<div class="navbar navbar-inverse navbar-static-top">
+	    	<div class="navbar-inner">
+				<div class="container">
+					<div class="header">
+			         	<a class="brand" th:href="@{/}">
+			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
+			         	</a>
+						<div class="nav-collapse collapse" 
+						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+							  <div th:if="${currentUser != null}">
+							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+							          <input type="submit" value="Log out" />
+							      </form>
+							      <p class="navbar-text pull-right" th:text="${currentUser}">
+							        sample_user
+							      </p>
+							  </div>
+							  <ul class="nav">
+								   <li><a href="/">Menu</a></li>
+								   <li><a th:href="@{management}">Management</a></li>
+								   <li><a th:href="@{logout}">Logout</a></li>
+							  </ul>
+						</div>
+			        </div>
+				</div>
+			</div>
 		</div>
-			<form action="#" th:action="@{/menu/update/}" th:object="${menuItemForm}"  method="post">
-					  <fieldset>
-					  <legend>User Information Edit</legend> 
-					 <input type="hidden" th:value="${menuItems.id}" name="id"/>
-					 <label for="name">Name:</label>
-					 <input type="text" th:field="*{name}" />
-					 <label for="hotprice">Hot Price:</label>
-					 <input type="text" th:field="*{hotPrice}" />
-					 <label for="iceprice">Ice Price: </label>
-					 <input type="text" th:field="*{icePrice}" />
-					 <label for="tag">Tag:</label>
-					 <input type="text" th:field="*{tag}" />
-					 <label for="recommend">Recommend:</label>
-					 <input type="text" th:field="*{recommend}" />
-					 <label for="original">Original:</label>
-					 <input type="text" th:field="*{original}" />
-					 <label for="mintoprepare">Minute to Prepare:</label>
-					 <input type="text" th:field="*{minToPrepare}" />
-					 <div id="submit">
-                     <input type="submit" value="Update"/>
-                      </div>
-                      </fieldset>
+	</div>  	
+	    <div tiles:fragment="content">
+			<div class="form-horizontal span6 application-form">
+		        <fieldset>
+		            <h4 class="form-title" th:text="${menuItems.name}">Delivery Information</h4>       
+		            <table class="flat-table">
+			            	<tr>
+		            		<td>熱飲價格</td>
+		            		<td><span th:text="${menuItems.hotPrice}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>冰飲價格</td>
+		            		<td><span th:text="${menuItems.icePrice}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>種類</td>
+		            		<td><span th:text="${menuItems.tag}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>大力推薦</td>
+		            		<td><span th:text="${menuItems.recommend}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>不提共去冰</td>
+		            		<td><span th:text="${menuItems.original}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>準備時間</td>
+		            		<td><span th:text="${menuItems.minToPrepare}"></span></td>
+		            	</tr>
+		            </table> 
+		        </fieldset>	      
+			</div>
+			<form class="form-horizontal span6 application-form" role="form" action="#" th:action="@{/menu/update/}" th:object="${menuItemForm}"  method="post">
+				<fieldset>
+					<h4 class="form-title">商品資訊修正</h4>
+					<div class="form-group">
+						<input type="hidden" th:value="${menuItems.id}" name="id"/>
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="name">商品名稱</label>
+						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入商品新名稱" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="hotprice">熱飲價格</label>
+						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入熱飲新價格" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="iceprice">冰飲價格</label>
+						<input class="form-input" type="text" th:field="*{icePrice}" placeholder="請輸入冰飲新價格" />
+					</div>
+					<div class="checkbox-group">
+						<label class="label label-default label-size15" for="tag">種類</label>
+						<select class="select-list">
+							<option value="1">原味茶</option>
+							<option value="2">熱門排行</option>
+							<option value="3">調味茶</option>
+							<option value="4">新鮮茶</option>
+							<option value="5">奶香茶</option>
+							<option value="6">拿鐵茶</option>
+							<option value="7">夏季限定</option>
+							<option value="8">冬季限定</option>
+						</select> 
+					</div>
+					<div class="checkbox-group">
+						<label class="label label-default label-size15" for="tag">大力推薦</label>
+						<span class="input-group-addon">
+						  <input type="checkbox" />
+						</span>
+					</div>
+					
+					<div class="checkbox-group">
+						<label class="label label-default label-size15" for="tag">不提供去冰</label>
+						<span class="input-group-addon">
+						  <input type="checkbox" />
+						</span>
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="mintoprepare">準備時間</label>
+						<input class="form-input" type="text" placeholder="準備時間" />
+					</div>
+					<div class="form-group form-submit-btn">
+						<input class="form-button" type="submit" value="更新"/>
+					</div>
+	        	</fieldset>
 			</form>
-    </div>
-  </body>
+		</div>
+	</body>
 </html>

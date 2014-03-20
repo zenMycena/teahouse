@@ -21,6 +21,7 @@
 							      </p>
 							  </div>
 							  <ul class="nav">
+							  	<li><a herf="/">Menu</a></li>
 							  	<li><a th:href="@{management}">Management</a></li>
 							  	<li><a th:href="@{logout}">Logout</a></li>
 							  </ul>
@@ -32,9 +33,9 @@
 	  	</div>
 	    <div tiles:fragment="content">
 	    <script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-	    	<div class="span12">
-		        <h4 class="span7">Order Menu</h4>
-		        <a class="linkBtn offset3" href="menu/create">Create</a>
+	    	<div class="form-horizontal span11 application-form">
+		        <h4 class="form-title">Order Menu</h4>
+		        <a class="linkBtn offset10" href="menu/create">新增</a>
 		        <div class="orderMenu span11">
 		       		<h5>熱門排行</h5>
 		       		<table class="table table-bordered table-striped">

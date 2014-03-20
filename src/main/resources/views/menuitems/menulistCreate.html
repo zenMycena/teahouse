@@ -4,7 +4,34 @@
 	 
 	</head>
 	<body>
-	 	<div tiles:fragment="menubar"></div>
+		<div tiles:fragment="menubar">
+	  		<div class="navbar navbar-inverse navbar-static-top">
+		    	<div class="navbar-inner">
+		        	<div class="container">
+			            <div class="header">
+			            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
+			
+							<div class="nav-collapse collapse" 
+							     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+							  <div th:if="${currentUser != null}">
+							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+							          <input type="submit" value="Log out" />
+							      </form>
+							      <p class="navbar-text pull-right" th:text="${currentUser}">
+							        sample_user
+							      </p>
+							  </div>
+							  <ul class="nav">
+							  	<li><a herf="/">Menu</a></li>
+							  	<li><a th:href="@{management}">Management</a></li>
+							  	<li><a th:href="@{logout}">Logout</a></li>
+							  </ul>
+							</div>
+			            </div>
+		        	</div>
+		    	</div>
+		    </div>
+	  	</div>
 	  	<div tiles:fragment="content">    
 			<form class="offset3 span6 application-form form-horizontal" role="form" action="#" th:action="@{/menu/create}" th:object="${menuItemForm}"  method="post">
 				<fieldset>
@@ -26,7 +53,7 @@
 						<label class="label label-default label-size15" for="iceprice">冰飲價格</label>
 						<input class="form-input" type="text" th:field="*{icePrice}" placeholder="請輸入冰飲價格" />
 					</div>
-					<div class="form-group">
+					<div class="checkbox-group">
 						<label class="label label-default label-size15" for="tag">種類</label>
 						<select class="select-list">
 							<option value="1">原味茶</option>
@@ -43,18 +70,18 @@
 						<label class="label label-default label-size15" for="cdate">Create Date:</label>
 						<input class="form-input" type="text" placeholder="Create Date" />
 					</div>
-					<div class="input-group">
+					<div class="checkbox-group">
 						<span class="input-group-addon">
 						  <input type="checkbox" />
 						</span>
 						<span>大力推薦</span>
 					</div>
 					
-					<div class="input-group">
+					<div class="checkbox-group">
 						<span class="input-group-addon">
 						  <input type="checkbox" />
 						</span>
-						<span>提共去冰</span>
+						<span>不提供去冰</span>
 					</div>
 					<div class="form-group">
 						<label class="label label-default label-size15" for="mintoprepare">準備時間</label>
