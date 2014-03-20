@@ -1,31 +1,51 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-    <title tiles:fragment="title"></title>
-  </head>
-  <body>
-  	<div tiles:fragment="menubar"></div>
-    <div tiles:fragment="content">
-        
-	        <fieldset>
-	            <legend>User Information</legend>
-	            <label for="name">Name: <span th:text="${menuItems.name}"></span></label>
-	            <label for="hotprice">Hot Price: <span th:text="${menuItems.hotPrice}"></span></label>      
-                <label for="iceprice">Ice Price: <span th:text="${menuItems.icePrice}"></span></label>  
-	            <label for="tag">Tag:<span th:text="${menuItems.tag}"></span></label>
-	            <label for="recommed">Recommend: <span th:text="${menuItems.recommend}"></span></label>
-	            <label for="original">Original: <span th:text="${menuItems.original}"></span></label>
-	            <label for="mintoprepare">Minute to Prepare: <span th:text="${menuItems.minToPrepare}"></span></label>          
-	        </fieldset>
-			<form action="#" th:action="@{/menu/delete/}" th:object="${menuItemForm}"  method="post">
-					  <fieldset>
-					  
-					 <input type="hidden" th:value="${menuItems.id}" name="id"/>
-					 
-					 <div id="submit">
-                     <input type="submit" value="Delete"/>
-                      </div>
-                      </fieldset>
-			</form>
-    </div>
-  </body>
+	<head>
+	  	<title tiles:fragment="title"></title>
+	</head>
+	<body>
+	  	<div tiles:fragment="menubar"></div>
+	    <div tiles:fragment="content">
+	    	<div class="form-horizontal offset3 span6 application-form">
+		        <fieldset>
+		            <h4 class="form-title" th:text="${menuItems.name}">Delivery Information</h4>       
+		            <table class="flat-table">
+ 		            	<tr>
+		            		<td>熱飲價格</td>
+		            		<td><span th:text="${menuItems.hotPrice}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>冰飲價格</td>
+		            		<td><span th:text="${menuItems.icePrice}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>種類</td>
+		            		<td><span th:text="${menuItems.tag}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>大力推薦</td>
+		            		<td><span th:text="${menuItems.recommend}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>不提共去冰</td>
+		            		<td><span th:text="${menuItems.original}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>準備時間</td>
+		            		<td><span th:text="${menuItems.minToPrepare}"></span></td>
+		            	</tr>
+		            </table> 
+		        </fieldset>	      
+				<form action="#" th:action="@{/menu/delete/}" th:object="${menuItemForm}"  method="post">
+					<fieldset>
+						<input type="hidden" th:value="${menuItems.id}" name="id"/>
+						<div class="form-group form-submit-btn">
+							<input class="form-button" type="submit" value="刪除" />
+						</div>
+                    </fieldset>
+				</form>		          
+       		</div>
+    
+
+		</div>
+	</body>
 </html>

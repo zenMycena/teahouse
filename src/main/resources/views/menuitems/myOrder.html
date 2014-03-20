@@ -1,0 +1,98 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title">My order detail</title>
+  </head>
+  <body>
+  	<div tiles:fragment="menubar">
+  		<div class="navbar navbar-inverse navbar-static-top">
+	        <div class="navbar-inner">
+	          <div class="container">
+	            <div class="header">
+	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
+	
+					<div class="nav-collapse collapse" 
+					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+					  <div th:if="${currentUser != null}">
+					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+					          <input type="submit" value="Log out" />
+					      </form>
+					      <p class="navbar-text pull-right" th:text="${currentUser}">
+					        sample_user
+					      </p>
+					  </div>
+					  <ul class="nav">
+					    <li><a class="active" th:href="@{myOrder}">My Order</a></li>
+					    <li><a th:href="@{logout}">Logout</a></li>
+					  </ul>
+					</div>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+  	</div>
+    <div tiles:fragment="content"  class="offset2 span8">
+		<h4 class="list-title">Thank you for your visit, your order is shown below</h4>
+        <div class="offset2 span8 application-form">
+        	<fieldset>
+				<h4 class="list-title">Order list</h4>
+        		<div class="orderDetailForm" style="height:150px;overflow:auto;">
+			        <table class="table table-bordered table-striped">
+		                <thead>
+			                <tr>
+			                	<th>名稱</th>
+			                	<th>冰塊</th>
+			                	<th>甜度</th>
+			                	<!-- <th>珍珠</th> -->
+			                	<th>杯數</th>
+			                	<th>價錢</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			            	<tr th:each="basketItem : ${basket.items}">
+								<td th:text="${basketItem.name}">飲品</td>
+								<td th:text="${basketItem.ice}">冰</td>
+								<td th:text="${basketItem.sweetness}">無糖</td>
+								<!-- <td>不加</td> -->
+								<td th:text="${basketItem.quantity}">杯數</td>
+								<td th:text="${basketItem.price}">價錢</td>	
+							</tr>
+			            </tbody>
+			            <tbody>
+			            	<tr >
+								<th>總杯數</th>
+								<td th:text="${basket.quantity}" colspan="1">總杯數</td>
+								<th>總價錢</th>
+			                	<td th:text="${basket.price}" colspan="2">總價錢</td>
+			             	</tr>
+			            </tbody>
+			        </table>
+				</div> 
+	        </fieldset>
+        	
+	        <div class="form-horizontal">
+		        <fieldset>
+		            <h4 class="form-title">Delivery Information</h4>       
+		            <table class="flat-table">
+		            	<tr>
+		            		<td>Name:</td>
+		            		<td>Jim</td>
+		            	</tr>
+		            	<tr>
+		            		<td>Phone:</td>
+		            		<td>0987654321</td>
+		            	</tr>
+		            	<tr>
+		            		<td>Email:</td>
+		            		<td>jim1234@gmail.com</td>
+		            	</tr>
+		            	<tr>
+		            		<td>Address:</td>
+		            		<td>cha-ha-er st.2</td>
+		            	</tr>
+		            </table> 
+		        </fieldset>	        
+	        </div>
+		</div>
+    </div>
+  </body>
+</html>
