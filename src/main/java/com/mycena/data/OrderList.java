@@ -16,7 +16,7 @@ public class OrderList {
 	private String username;
 	private double totalPrice;
 	private Date orderDate;
-	private int status;
+	private String status;
 /*	@OneToMany(mappedBy="orderList")
     private Set<Orders> orders;*/
 	private UUID uid;
@@ -35,8 +35,8 @@ public class OrderList {
 	public void setTotalPrice(double totalPrice) {		this.totalPrice = totalPrice;	}
 	public Date getOrderDate() {		return orderDate;	}
 	public void setOrderDate(Date orderDate) {		this.orderDate = orderDate;	}
-	public int getStatus() {		return status;	}
-	public void setStatus(int status) {		this.status = status;	}
+	public String getStatus() {		return status;	}
+	public void setStatus(String status) {		this.status = status;	}
 /*	public Set<Orders> getOrders() {		return orders;	}
 	public void setOrders(Set<Orders> orders) {		this.orders = orders;	}*/
 	public UUID getUid() {		return uid;	}

@@ -1,67 +1,100 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-    <title tiles:fragment="title"></title>
-  </head>
-  <body>
-  	<div tiles:fragment="menubar"></div>
-    <div tiles:fragment="content">
-        <div class="offset3 span6">
-	        <fieldset>
-	            <h3 class="form-title">User Information</h3>       
-	            <table class="flat-table">
-	            	<tr>
-	            		<td>Account:</td>
-	            		<td th:text="${users.account}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Password:</td>
-	            		<td th:text="${users.password}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Username:</td>
-	            		<td th:text="${users.name}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Phone:</td>
-	            		<td th:text="${users.phone}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Email:</td>
-	            		<td th:text="${users.email}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Address:</td>
-	            		<td th:text="${users.address}"></td>
-	            	</tr>
-	            </table>
-	            
-	            <!-- <label class="form-label" for="account">Account: <span th:text="${users.account}"></span></label>
-	            <label class="form-label" for="password">Password: <span th:text="${users.password}"></span></label>      
-                <label class="form-label" for="name">Username: <span th:text="${users.name}"></span></label>  
-	            <label class="form-label" for="phone">Phone:<span th:text="${users.phone}"></span></label>
-	            <label class="form-label" for="email">Email: <span th:text="${users.email}"></span></label>
-	            <label class="form-label" for="address">Address: <span th:text="${users.address}"></span></label>   -->        
-	        </fieldset>
-			<form class="application-form form-horizontal" role="form" action="#" th:action="@{/user/edit/}" th:object="${userForm}"  method="post">
+	<head>
+		<title tiles:fragment="title">Menu update</title>
+	</head>
+	<body>
+	<div tiles:fragment="menubar">
+		<div class="navbar navbar-inverse navbar-static-top">
+	    	<div class="navbar-inner">
+				<div class="container">
+					<div class="header">
+			         	<a class="brand" th:href="@{/}">
+			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
+			         	</a>
+						<div class="nav-collapse collapse" 
+						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+							  <div th:if="${currentUser != null}">
+							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+							          <input type="submit" value="Log out" />
+							      </form>
+							      <p class="navbar-text pull-right" th:text="${currentUser}">
+							        sample_user
+							      </p>
+							  </div>
+							  <ul class="nav">
+								   <li><a href="/">Menu</a></li>
+							  </ul>
+						</div>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>  	
+	    <div tiles:fragment="content">
+			<div class="form-horizontal span6 application-form">
+		        <fieldset>
+		            <h4 class="form-title" th:text="${users.name}">Users Information</h4>       
+		            <table class="flat-table">
+			            <tr>
+		            		<td>帳號</td>
+		            		<td><span th:text="${users.account}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>密碼</td>
+		            		<td><span th:text="${users.password}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>電話</td>
+		            		<td><span th:text="${users.phone}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>Email</td>
+		            		<td><span th:text="${users.email}"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td>地址</td>
+		            		<td><span th:text="${users.address}"></span></td>
+		            	</tr>
+		            	<!-- <label class="form-label" for="account">Account: <span th:text="${users.account}"></span></label>
+			            <label class="form-label" for="password">Password: <span th:text="${users.password}"></span></label>      
+		                <label class="form-label" for="name">Username: <span th:text="${users.name}"></span></label>  
+			            <label class="form-label" for="phone">Phone:<span th:text="${users.phone}"></span></label>
+			            <label class="form-label" for="email">Email: <span th:text="${users.email}"></span></label>
+			            <label class="form-label" for="address">Address: <span th:text="${users.address}"></span></label>   -->
+			        </table> 
+		        </fieldset>	      
+			</div>
+			<form class="form-horizontal span6 application-form" role="form" action="#" th:action="@{/user/edit/}" th:object="${userForm}"  method="post">
 				<fieldset>
-					<h3 class="form-title">User Information Edit</h3>
-					<input class="form-input" type="hidden" th:value="${users.account}" name="account" placeholder="What's your username?" />
-					<label class="form-label" for="name">name:</label>
-					<input class="form-input" type="text"   th:field="*{name}" placeholder="Your new name?" />
-					<label class="form-label"  for="password">password:</label>
-					<input class="form-input" type="password"   th:field="*{password}" placeholder="Your new password?" />	 
-					<label class="form-label"  for="phone">phone:</label>
-					<input class="form-input" type="phone"   th:field="*{phone}" placeholder="Your new phone?" /> 
-					<label class="form-label"  for="email">email:</label>
-					<input class="form-input" type="email"   th:field="*{email}" placeholder="Your new email?" /> 
-					<label class="form-label"  for="phone">phone:</label>
-					<input class="form-input" type="text"   th:field="*{address}" placeholder="Your new phone?" />
-					<input class="form-button" type="submit" value="Update" />
-				</fieldset>
+					<h4 class="form-title">個人資料修正</h4>
+					<div class="form-group">
+						<input type="hidden" th:value="${users.account}" name="account"/>
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="name">姓名</label>
+						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入新姓名" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="password">密碼</label>
+						<input class="form-input" type="password" th:field="*{password}" placeholder="請輸入新密碼" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="phone">電話</label>
+						<input class="form-input" type="phone" th:field="*{phone}" placeholder="請輸入新電話" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="email">E-mail</label>
+						<input class="form-input" type="email" th:field="*{email}" placeholder="請輸入新E-mail" />
+					</div>
+					<div class="form-group">
+						<label class="label label-default label-size15" for="address">地址</label>
+						<input class="form-input" type="address" th:field="*{address}" placeholder="請輸入新地址" />
+					</div>
+					<div class="form-group form-submit-btn">
+						<input class="form-button" type="submit" value="更新"/>
+					</div>
+	        	</fieldset>
 			</form>
-    </div>
-        
-        
-        </div>
-  </body>
+		</div>
+	</body>
 </html>

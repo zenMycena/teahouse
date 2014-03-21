@@ -34,18 +34,21 @@ public class BasketController {
 	public String remove(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Remove {} from the basket", menuItem.getId());
 		basket.delete(menuItem.getId());
-		return "redirect:/showBasket";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/add" , method = RequestMethod.POST)
 	public String add(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Add {} from the basket", menuItem.getId());
+		//System.out.println(menuItem.getId());
 		menuItem.setPrice(countPrice(menuItem));
 		menuItem.setIce(ParseCondimentToString.iceToString(menuItem.getIce()));
 		menuItem.setQuantity(menuItem.getQuantity());
 		menuItem.setSweetness(ParseCondimentToString.sweetnessToString(menuItem.getSweetness()));
 		menuItem.setMinToPrepare(menuItemRepository.findByName(menuItem.getName()).getMinToPrepare()*menuItem.getQuantity());
 		basket.add(menuItem);
+		System.out.println(menuItem.getName());
+		
 		return "redirect:/";
 	}
 	

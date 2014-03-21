@@ -2,7 +2,12 @@ package com.mycena.mvc;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -14,25 +19,28 @@ public class Basket  implements Serializable {
 
 	private static final long serialVersionUID = -1779666204730031281L;
 	
-	private ArrayList<MenuItemForm> items = new ArrayList<MenuItemForm>();
-
+	//private ArrayList<MenuItemForm> items = new ArrayList<MenuItemForm>();
+	private Map<UUID,MenuItemForm> items = new LinkedHashMap<UUID,MenuItemForm>();
 	
 	public Basket() {
 		
 	}
 
-	public Basket(ArrayList<MenuItemForm> items) {
+	public Basket(Map<UUID,MenuItemForm> items) {
 		this.items = items;
 	}
 
 	
 	public MenuItemForm add(MenuItemForm item) {
-		items.add(item);
+		UUID uuid = UUID.randomUUID();
+		item.setId(uuid);
+		System.out.println(uuid);
+		items.put(item.getId(), item);
 		return item;
 	}
 
 	
-	public void delete(long key) {
+	public void delete(UUID key) {
 		items.remove(key);
 	}
 
@@ -44,7 +52,7 @@ public class Basket  implements Serializable {
 
 	
 	public List<MenuItemForm> findAll() {
-		return items;
+		return new ArrayList<MenuItemForm>(items.values());
 	}
 	
 	public List<MenuItemForm> getItems() {
@@ -56,28 +64,34 @@ public class Basket  implements Serializable {
 	}
 	
 	public int  getPrice(){
-		List<MenuItemForm> list = findAll();
-		if (getSize() !=0) {
-			double total = 0;
-			for (int i = 0; i < getSize(); i++) {
-				total=list.get(i).getPrice()+total;
+		
+		Map<UUID, MenuItemForm> list = items;
+		
+		if (getSize() != 0) {
+			int total = 0;
+			for(Entry<UUID, MenuItemForm> entry : list.entrySet()) {
+//			    String key = entry.getKey();
+//			    HashMap value = entry.getValue();
+			    total += entry.getValue().getPrice();
 			}
-			
-		return (int)total;
+			return total;
 		}
 		
 		return 0;
 	}
 	
 	public int  getQuantity(){
-		List<MenuItemForm> list = findAll();
-		if (getSize() !=0) {
-			double total = 0;
-			for (int i = 0; i < getSize(); i++) {
-				total=list.get(i).getQuantity()+total;
+
+		Map<UUID, MenuItemForm> list = items;
+		
+		if (getSize() != 0) {
+			int total = 0;
+			for(Entry<UUID, MenuItemForm> entry : list.entrySet()) {
+//			    String key = entry.getKey();
+//			    HashMap value = entry.getValue();
+			    total += entry.getValue().getQuantity();
 			}
-			
-		return (int)total;
+			return total;
 		}
 		
 		return 0;
@@ -98,7 +112,7 @@ public class Basket  implements Serializable {
 	}
 	
 	public void clear() {
-		items = new ArrayList<MenuItemForm>();
+		items = new HashMap<UUID,MenuItemForm>();
 	}
 	
 }

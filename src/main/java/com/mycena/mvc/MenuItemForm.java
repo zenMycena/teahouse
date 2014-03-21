@@ -4,10 +4,15 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.UUID;
 
-public class MenuItemForm {
+import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
 
-    private long id;
-    
+
+public class MenuItemForm {
+	//@NotEmpty(message = "name is required.")
+    private UUID id;
+	
+	//@NotEmpty(message = "name is required.")
+    private String name;
     private double hotPrice;
     private double icePrice;
     private double price;
@@ -16,7 +21,6 @@ public class MenuItemForm {
     private Date orderDate;
     private int status;
     private UUID uid;
-    private String name;
     private String ice;
     private String sweetness;
     private int quantity;
@@ -30,12 +34,13 @@ public class MenuItemForm {
 	public void setPrice(double price) {		this.price = price;	}
 	public int getQuantity() {		return quantity;	}
 	public void setQuantity(int quantity) {		this.quantity = quantity;	}
+
 	public String getSweetness() {		return sweetness;	}
 	public void setSweetness(String sweetness) {		this.sweetness = sweetness;	}
 	public String getIce() {		return ice;	}	
 	public void setIce(String ice) {		this.ice = ice;	}
-	public long getId() {		return id;	}
-	public void setId(long id) {		this.id = id;	}
+	public UUID getId() {		return id;	}
+	public void setId(UUID id) {		this.id = id;	}
 	public String getName() {	return name;	}
 	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes("ISO-8859-1"),"UTF-8");	}
 	public double getHotPrice() {		return hotPrice;	}
