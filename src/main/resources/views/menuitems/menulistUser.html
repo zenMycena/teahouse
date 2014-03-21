@@ -12,8 +12,7 @@
 				         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
 				         	</a>
 				
-							<div class="nav-collapse collapse" 
-							     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+							<div class="nav-collapse collapse" >
 								  <div th:if="${currentUser != null}">
 								      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
 								          <input type="submit" value="Log out" />
@@ -22,9 +21,11 @@
 								        sample_user
 								      </p>
 								  </div>
-								  <ul class="nav">
-									   <li><a th:href="@{myOrder}">My Order</a></li>
-									   <li><a th:href="@{logout}">Logout</a></li>
+								  <ul class="nav pull-right">
+									   <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
+									   <li class="navbar-list"><a th:href="@{myOrder}">My Order</a></li>
+									   <li class="navbar-list"><a th:href="@{login}">Login</a></li>
+									   <li class="navbar-list"><a th:href="@{logout}">Logout</a></li>
 								  </ul>
 							</div>
 				        </div>
@@ -137,18 +138,18 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect"><input type="submit" value="Add"></input></td>              
 								</tr>
 							</form>
 						</tbody>
@@ -193,18 +194,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -249,18 +252,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -305,18 +310,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -361,18 +368,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -417,18 +426,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -473,18 +484,20 @@
 										  <option value="4">正常</option>
 										</select> 
 									</td>
-						            <th class="menuSelect">
+						            <td class="menuSelect">
 										<select th:field="*{ice}" th:object="${menuItemForm}">
 											<option   th:if="${menuitem.icePrice != 0}" th:value="0" >去冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="1" >少冰</option>
 											<option   th:if="${menuitem.icePrice != 0}" th:value="2" >正常</option>
 											<option   th:if="${menuitem.hotPrice != 0}" th:value="3" >熱</option>
 										</select> 
-									</th> 
-						            <th class="menuSelect">
+									</td> 
+						            <td class="menuSelect">
 										<input type="number" name="quantity" min="1" value="0"></input>
-									</th>
-						            <th class="menuSelect"><input type="submit" value="Add"></input></th>              
+									</td>
+						            <td class="menuSelect">
+						            	<input type="submit" value="Add"></input>
+						            </td>              
 								</tr>
 							</form>
 						</tbody>
@@ -522,30 +535,39 @@
 				    <table class="table table-bordered table-striped">
 						<thead>
 							<tr>
+							<td>名稱</td>
 				            	<td>名稱</td>
 				             	<td>冰塊</td>
 				             	<td>甜度</td>
 				             	<!-- <td>珍珠</td> -->
 				             	<td>杯數</td>
 				             	<td>價錢</td>
+				             	<td>功能</td>
 				            </tr>
 						</thead>
 						<tbody>
-							<tr th:each="basketItem : ${basket.items}">
-								<td th:text="${basketItem.name}"></td>
-								<td th:text="${basketItem.ice}">冰</td>
-								<td th:text="${basketItem.sweetness}">無糖</td>
-								<!-- <td>不加</td> -->
-								<td th:text="${basketItem.quantity}">杯數</td>
-								<td  th:text="${basketItem.price}">價錢</td>	
-							</tr>
+							
+								<tr th:each="basketItem : ${basket.items}">
+								<form action="" method="POST" th:action="@{/basket/removeFromBasket}">
+								<td th:text="${basketItem.id}"></td>
+									<td th:text="${basketItem.name}"></td>
+									<td th:text="${basketItem.ice}">冰</td>
+									<td th:text="${basketItem.sweetness}">無糖</td>
+									<!-- <td>不加</td> -->
+									<td th:text="${basketItem.quantity}">杯數</td>
+									<td th:text="${basketItem.price}">價錢</td>	
+									<td class="menuSelect"><input type="submit" value="取消"/></td>	
+									<input id="id" name="id" type="hidden" th:field="*{id}"  th:object="${menuItemForm}" th:value="${basketItem.id}"/>
+								</form>	
+								</tr>
+							
 						</tbody>
 						<tbody>
 							<tr >
 									<th>總杯數</th>
-									<td th:text="${basket.quantity}" colspan="1">總杯數</td>
+									<td th:text="${basket.quantity}" colspan="2">總杯數</td>
 									<th>總價錢</th>
-						              	<td th:text="${basket.price}" colspan="2">總價錢</td>
+						            <td th:text="${basket.price}" colspan="2">總價錢</td>
 						          </tr>
 						</tbody>
 				     </table>

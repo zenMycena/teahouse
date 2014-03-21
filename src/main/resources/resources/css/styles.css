@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+
 .header .brand img{
 	height: 40px;
 }
@@ -187,4 +188,19 @@ input.form-button:hover{
 
 a.link-account {
 	color: #F0776C;
+}
+.nav .navbar-list {
+	padding: 10px;
+}
+.nav .active.navbar-list{
+	background-color: #5A5A5A;
+}
+.nav .navbar-list:hover{
+	background-color: #5A5A5A;
+	padding: 10px;
+	color: #FFF;
+}
+.navbar-inverse .nav .active.navbar-list > a, .navbar-inverse .nav .active.navbar-list > a:hover, .navbar-inverse .nav .active.navbar-list > a:focus{
+	background-color: #5A5A5A;
+	box-shadow: none;
 }

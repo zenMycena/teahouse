@@ -2,113 +2,133 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title tiles:include="title">SecureMail:</title>
-    <link rel="icon" type="image/x-icon" th:href="@{/resources/img/favicon.ico}" href="../resources/img/favicon.ico"/>
-    <link th:href="@{/resources/css/bootstrap.css}" href="../resources/css/bootstrap.css" rel="stylesheet"></link>
-    <link th:href="@{/resources/css/styles.css}" href="../resources/css/styles.css" rel="stylesheet"></link>
-    <style type="text/css">
-      /* Sticky footer styles
-      -------------------------------------------------- */
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title tiles:include="title">SecureMail:</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/resources/img/favicon.ico}" href="../resources/img/favicon.ico"/>
+	<link th:href="@{/resources/css/bootstrap.css}" href="../resources/css/bootstrap.css" rel="stylesheet"></link>
+	<link th:href="@{/resources/css/styles.css}" href="../resources/css/styles.css" rel="stylesheet"></link>
+	
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./resources/js/bootstrap.js"></script>
+	<!-- <link th:href="@{/resources/css/docs.css}" href="../resources/css/docs.css" rel="stylesheet"></link>
+	<link th:href="@{/resources/css/flat-ui.css}" href="../resources/css/flat-ui.css" rel="stylesheet"></link>
+	<link th:href="@{/resources/css/prettify.css}" href="../resources/css/docs.css" rel="stylesheet"></link> -->
+	
+	
+	<style type="text/css">
+	 /* Sticky footer styles
+	 -------------------------------------------------- */	
+		 html,
+		 body {
+		   height: 100%;
+		   /* The html and body elements cannot have any padding or margin. */
+		 }
+		
+		 /* Wrapper for page content to push down footer */
+		 #wrap {
+		   min-height: 100%;
+		   height: auto !important;
+		   height: 100%;
+		   /* Negative indent footer by it's height */
+		   margin: 0 auto -60px;
+		 }
+		
+		 /* Set the fixed height of the footer here */
+		 #push,
+		 #footer {
+		   height: 60px;
+		 }
+		 #footer {
+		   background-color: #f5f5f5;
+		 }
+		
+		 /* Lastly, apply responsive CSS fixes as necessary */
+		 @media (max-width: 767px) {
+		   #footer {
+		     margin-left: -20px;
+		     margin-right: -20px;
+		     padding-left: 20px;
+		     padding-right: 20px;
+		   }
+		 }
+		
+		
+		
+		 /* Custom page CSS
+		 -------------------------------------------------- */
+		 /* Not required for template or sticky footer method. */
+		
+		 .container {
+		   width: auto;
+		   max-width: 680px;
+		 }
+		 .container .credit {
+		   margin: 20px 0;
+		   text-align: center;
+		 }
+		 a {
+		     color: green;
+		 }
+		 .navbar-form {
+		   margin-left: 1em;
+		 }
+	</style>
+	<link th:href="@{resources/css/bootstrap-responsive.css}" href="/resources/css/bootstrap-responsive.css" rel="stylesheet"></link>
+	
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script tiles:replace="head"></script>
+</head>
 
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
 
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      .container {
-        width: auto;
-        max-width: 680px;
-      }
-      .container .credit {
-        margin: 20px 0;
-        text-align: center;
-      }
-      a {
-          color: green;
-      }
-      .navbar-form {
-        margin-left: 1em;
-      }
-    </style>
-    <link th:href="@{resources/css/bootstrap-responsive.css}" href="/resources/css/bootstrap-responsive.css" rel="stylesheet"></link>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script tiles:replace="head"></script>
-  </head>
-
-
-  <body>
+<body>
 	<div id="wrap">
-		<div tiles:substituteby="menubar">
+		<nav tiles:substituteby="menubar">
 	            Fake content
-	    </div>
+	    </nav>
       <!-- Begin page content -->
       
-      <div class="container-fluid">
-      	<div class="row-fluid">
-      		<div class="banner">
-				<h3 class="shopName">茶湯會</h3>
-			</div>
-      		<div class="alert alert-success"
-	              th:if="${globalMessage}"
-	              th:text="${globalMessage}">
-	            Some Success message
-	        </div>
-	        <div tiles:substituteby="content">
-	            Fake content
-	        </div>
-      	</div>
-      </div>
+		<div class="container-fluid">
+      		<div class="row-fluid">
+      			<div class="banner">
+					<h3 class="shopName">茶湯會</h3>
+				</div>
+	      		<div class="alert alert-success"
+		              th:if="${globalMessage}"
+		              th:text="${globalMessage}">
+		            Some Success message
+		        </div>
+		        <div tiles:substituteby="content">
+		            Fake content
+		        </div>
+      		</div>
+		</div>
 
-      <div id="push"><!--  --></div>
+		<div id="push"><!--  --></div>
     </div>
 
     <div id="footer">
-      <div class="container">
-      	
-        	<p class="muted credit">&copy; Mycena</p>
-      	
-      </div>
+		<div class="container">
+			<p class="muted credit">&copy; Mycena</p>
+		</div>
     </div>
-  </body>
+
+<!--     <script src="./resources/js/jquery-1.8.3.min.js"></script>
+    <script src="./resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="./resources/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="./resources/js/bootstrap.min.js"></script>
+    <script src="./resources/js/bootstrap-select.js"></script>
+    <script src="./resources/js/bootstrap-switch.js"></script>
+    <script src="./resources/js/flatui-checkbox.js"></script>
+    <script src="./resources/js/flatui-radio.js"></script>
+    <script src="./resources/js/jquery.tagsinput.js"></script>
+    <script src="./resources/js/jquery.placeholder.js"></script>
+    <script src="./resources/js/typeahead.js"></script>
+    <script src="./resources/bootstrap/js/google-code-prettify/prettify.js"></script>
+    <script src="./resources/js/application.js"></script> -->
+
+</body>
 </html>

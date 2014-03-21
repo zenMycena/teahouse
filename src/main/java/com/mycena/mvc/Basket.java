@@ -34,6 +34,7 @@ public class Basket  implements Serializable {
 	
 	public void delete(long key) {
 		items.remove(key);
+		//items.remove(o);
 	}
 
 	
