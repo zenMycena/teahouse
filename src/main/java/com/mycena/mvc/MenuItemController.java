@@ -59,12 +59,12 @@ public class MenuItemController {
     		for (MenuItem menuitem : menuitems) {
 				al.add(menuitem);
 			}
-    		return new ModelAndView("menuitems/menulist", "menuitems", menuitems);
+    		return new ModelAndView("menuitems/menulistUser", "menuitems", menuitems);
 		}else {
 			maxOrder = al.get(al.size()-1).getId();
 			List<MenuItem> menuitems = menuItemRepository.findWithMaxOrder(maxOrder);
 			al.addAll(menuitems);
-			return new ModelAndView("menuitems/menulist", "menuitems", al);
+			return new ModelAndView("menuitems/menulistUser", "menuitems", al);
 		}
     	
     }
@@ -82,7 +82,7 @@ public class MenuItemController {
     
     @RequestMapping(value="menu/update",method=RequestMethod.POST)
     public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
-    	  
+    	  //MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	  MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
     	  menuItem.setName(menuItemForm.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
