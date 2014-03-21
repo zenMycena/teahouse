@@ -49,6 +49,7 @@
 	<definition name="content/menuitems/*"      template="menuitems/{1} :: content"/>
 	<definition name="title/menuitems/*"      	template="menuitems/{1} :: title"/>
 	<definition name="head/menuitems/*"      	template="menuitems/{1} :: /html/head/link"/>
+
 <!--*************   Admin ******************-->
 	<definition name="admin/*" template="layout">
 		<put-attribute name="menubar" value="menubar/admin/{1}"/>
@@ -60,5 +61,5 @@
 	<definition name="content/admin/*" template="admin/{1} :: content"/>
 	<definition name="title/admin/*" template="admin/{1} :: title"/>
 	<definition name="head/admin/*" template="admin/{1} :: /html/head/link"/>
-  
+ 
 </tiles-definitions>

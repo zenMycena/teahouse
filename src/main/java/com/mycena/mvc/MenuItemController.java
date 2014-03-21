@@ -104,7 +104,9 @@ public class MenuItemController {
     
     @RequestMapping(value="menu/delete",method=RequestMethod.POST)
     public String deleteMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
-    	  MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+
+    	 MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+
     	 menuItemRepository.delete(menuItem);
     	 return "redirect:/";
     }

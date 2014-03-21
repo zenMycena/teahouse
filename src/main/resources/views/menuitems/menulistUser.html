@@ -5,39 +5,14 @@
 	</head>
 	<body>
 		<div tiles:fragment="menubar">
-			<div class="navbar navbar-inverse navbar-static-top">
-		    	<div class="navbar-inner">
-					<div class="container">
-						<div class="header">
-				         	<a class="brand" th:href="@{/}">
-				         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
-				         	</a>
-				
-							<div class="nav-collapse collapse" 
-							     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-								  <div th:if="${currentUser != null}">
-								      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-								          <input type="submit" value="Log out" />
-								      </form>
-								      <p class="navbar-text pull-right" th:text="${currentUser}">
-								        sample_user
-								      </p>
-								  </div>
-								  <ul class="nav">
-									   <li><a th:href="@{myOrder}">My Order</a></li>
-									   <li><a th:href="@{logout}">Logout</a></li>
-								  </ul>
-							</div>
-				        </div>
-					</div>
-				</div>
-			</div>
+			<div th:include="navigationLayout :: userMenu"></div>
 		</div>
 		<div tiles:fragment="content">
 		
 			<div class="form-horizontal span7 application-form">
 				<fieldset>
 				<h4 class="form-title">Menu List</h4>
+
 					<div class="orderMenu span12">
 					
 						<div th:include="component :: orderList('熱門排行')"></div>
@@ -50,6 +25,7 @@
 						<div th:include="component :: orderList('冬季限定')"></div>
 	
 					</div>
+
 				</fieldset>
 			</div>
 			
@@ -71,6 +47,7 @@
 						<tbody>
 							
 								<tr th:each="basketItem : ${basket.items}">
+
 									<form method="POST" th:action="@{/basket/removeFromBasket}">
 										<td th:text="${basketItem.name}"></td>
 										<td th:text="${basketItem.ice}">冰</td>
@@ -82,15 +59,16 @@
 										<th class="menuSelect"><input type="submit" value="Remove"></input></th>  
 									</form>  	
 								</tr>
-								
 						</tbody>
 						<tbody>
 							<tr >
-									<th>總杯數</th>
-									<td th:text="${basket.quantity}" colspan="1">總杯數</td>
-									<th>總價錢</th>
+									<td>總杯數</td>
+									<td th:text="${basket.quantity}" colspan="2">總杯數</td>
+									<td>總價錢</td>
 						            <td th:text="${basket.price}" colspan="2">總價錢</td>
+
 						    </tr>
+
 						</tbody>
 				     </table>
 				

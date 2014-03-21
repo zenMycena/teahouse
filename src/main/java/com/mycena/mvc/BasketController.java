@@ -19,6 +19,7 @@ import com.mycena.data.Orders;
 import com.mycena.mvc.utils.ParseCondimentToString;
 
 
+
 @Controller
 @RequestMapping(value = "/basket")
 public class BasketController {
@@ -30,7 +31,9 @@ public class BasketController {
 	private OrderRepository orderRepository;
 	@Autowired
 	private MenuItemRepository menuItemRepository;
+
 	@RequestMapping(value = "/removeFromBasket" , method = RequestMethod.POST)
+	
 	public String remove(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Remove {} from the basket", menuItem.getId());
 		basket.delete(menuItem.getId());
