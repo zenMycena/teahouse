@@ -2,6 +2,7 @@ package com.mycena.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,17 +18,14 @@ public class BasketController {
 	public String remove(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Remove {} from the basket", menuItem.getId());
 		basket.delete(menuItem.getId());
-		return "redirect:/";
+		return "redirect:/showBasket";
 	}
 	
 	@RequestMapping(value = "/add" , method = RequestMethod.POST)
 	public String add(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Add {} from the basket", menuItem.getId());
-		//System.out.println(menuItem.getId());
 		menuItem.setPrice(countPrice(menuItem));
 		basket.add(menuItem);
-		System.out.println(menuItem.getName());
-		
 		return "redirect:/";
 	}
 			

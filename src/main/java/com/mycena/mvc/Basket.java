@@ -2,12 +2,7 @@ package com.mycena.mvc;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.UUID;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -19,28 +14,25 @@ public class Basket  implements Serializable {
 
 	private static final long serialVersionUID = -1779666204730031281L;
 	
-	//private ArrayList<MenuItemForm> items = new ArrayList<MenuItemForm>();
-	private Map<UUID,MenuItemForm> items = new LinkedHashMap<UUID,MenuItemForm>();
+	private ArrayList<MenuItemForm> items = new ArrayList<MenuItemForm>();
+
 	
 	public Basket() {
 		
 	}
 
-	public Basket(Map<UUID,MenuItemForm> items) {
+	public Basket(ArrayList<MenuItemForm> items) {
 		this.items = items;
 	}
 
 	
 	public MenuItemForm add(MenuItemForm item) {
-		UUID uuid = UUID.randomUUID();
-		item.setId(uuid);
-		System.out.println(uuid);
-		items.put(item.getId(), item);
+		items.add(item);
 		return item;
 	}
 
 	
-	public void delete(UUID key) {
+	public void delete(long key) {
 		items.remove(key);
 	}
 
@@ -52,7 +44,7 @@ public class Basket  implements Serializable {
 
 	
 	public List<MenuItemForm> findAll() {
-		return new ArrayList<MenuItemForm>(items.values());
+		return items;
 	}
 	
 	public List<MenuItemForm> getItems() {
@@ -64,41 +56,35 @@ public class Basket  implements Serializable {
 	}
 	
 	public int  getPrice(){
-		
-		Map<UUID, MenuItemForm> list = items;
-		
-		if (getSize() != 0) {
-			int total = 0;
-			for(Entry<UUID, MenuItemForm> entry : list.entrySet()) {
-//			    String key = entry.getKey();
-//			    HashMap value = entry.getValue();
-			    total += entry.getValue().getPrice();
+		List<MenuItemForm> list = findAll();
+		if (getSize() !=0) {
+			double total = 0;
+			for (int i = 0; i < getSize(); i++) {
+				total=list.get(i).getPrice()+total;
 			}
-			return total;
+			
+		return (int)total;
 		}
 		
 		return 0;
 	}
 	
 	public int  getQuantity(){
-
-		Map<UUID, MenuItemForm> list = items;
-		
-		if (getSize() != 0) {
-			int total = 0;
-			for(Entry<UUID, MenuItemForm> entry : list.entrySet()) {
-//			    String key = entry.getKey();
-//			    HashMap value = entry.getValue();
-			    total += entry.getValue().getQuantity();
+		List<MenuItemForm> list = findAll();
+		if (getSize() !=0) {
+			double total = 0;
+			for (int i = 0; i < getSize(); i++) {
+				total=list.get(i).getQuantity()+total;
 			}
-			return total;
+			
+		return (int)total;
 		}
 		
 		return 0;
 	}
 	
 	public void clear() {
-		items = new HashMap<UUID,MenuItemForm>();
+		items = new ArrayList<MenuItemForm>();
 	}
 	
 }

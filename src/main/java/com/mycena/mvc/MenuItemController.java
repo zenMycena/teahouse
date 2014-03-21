@@ -82,8 +82,7 @@ public class MenuItemController {
     
     @RequestMapping(value="menu/update",method=RequestMethod.POST)
     public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
-    	  //MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
-    	  MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+    	  MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	  menuItem.setName(menuItemForm.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
@@ -105,7 +104,7 @@ public class MenuItemController {
     
     @RequestMapping(value="menu/delete",method=RequestMethod.POST)
     public String deleteMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
-    	 MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+    	  MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	 menuItemRepository.delete(menuItem);
     	 return "redirect:/";
     }
