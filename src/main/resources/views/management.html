@@ -4,32 +4,7 @@
   </head>
   <body>
   	<div tiles:fragment="menubar">
-  		<div class="navbar navbar-inverse navbar-static-top">
-	        <div class="navbar-inner">
-	          <div class="container">
-	            <div class="header">
-	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
-	
-					<div class="nav-collapse collapse" 
-					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-					  <div th:if="${currentUser != null}">
-					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-					          <input type="submit" value="Log out" />
-					      </form>
-					      <p class="navbar-text pull-right" th:text="${currentUser}">
-					        sample_user
-					      </p>
-					  </div>
-					  <ul class="nav">
-					  	<li class="navbar-list"><a herf="/">Menu</a></li>
-					  	<li class="active navbar-list"><a th:href="@{management}">Management</a></li>
-					  	<li class="navbar-list"><a th:href="@{logout}">Logout</a></li>
-					  </ul>
-					</div>
-	            </div>
-	        </div>
-	      </div>
-	    </div>
+		<div th:include="navigationLayout :: AdminMag"></div>
   	</div>
     <div tiles:fragment="content"  class="offset2 span7">
        	<blockquote class="orderDetail">British number one Andy Murray and coach Ivan Lendl have agreed to end their two-year partnership.  "I'm eternally grateful to Ivan for all his hard work," said Murray, 26. "We've learned a lot as a team and it will be of benefit in the future."
