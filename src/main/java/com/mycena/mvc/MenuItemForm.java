@@ -1,13 +1,14 @@
 package com.mycena.mvc;
 
 import java.io.UnsupportedEncodingException;
+import java.util.UUID;
 
 import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
 
 
 public class MenuItemForm {
 	//@NotEmpty(message = "name is required.")
-    private long id;
+    private UUID id;
 	
 	//@NotEmpty(message = "name is required.")
     private String name;
@@ -47,8 +48,8 @@ public class MenuItemForm {
 	public void setSweetness(int sweetness) {		this.sweetness = sweetness;	}
 	public int getIce() {		return ice;	}	
 	public void setIce(int ice) {		this.ice = ice;	}
-	public long getId() {		return id;	}
-	public void setId(long id) {		this.id = id;	}
+	public UUID getId() {		return id;	}
+	public void setId(UUID id) {		this.id = id;	}
 	public String getName() {	return name;	}
 	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes("ISO-8859-1"),"UTF-8");	}
 	public double getHotPrice() {		return hotPrice;	}
