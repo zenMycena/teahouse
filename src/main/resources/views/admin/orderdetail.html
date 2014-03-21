@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
   <head>
-    <title tiles:fragment="title">My order detail</title>
+    <title tiles:fragment="title">Order </title>
   </head>
   <body>
   	<div tiles:fragment="menubar">
@@ -30,18 +30,21 @@
 	      </div>
 	    </div>
   	</div>
-    <div tiles:fragment="content"  class="offset2 span8">
-       	<form>
-       		<h5>Dear customer, thank you for the order. We will delivery your beverages in
-       		<strong>30</strong> minutes</h5>
-       		<input type="submit" value="OK" class="btn btn-default"/>
-       	</form> 
-       	<div>
-            <p class="greeting-id">Order ID:</p>
-            <p class="greeting-content">The Order ID is:  </p>
-        </div>    
-       	<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-		<script  src="../resources/js/order-user.js"></script>
+    <div tiles:fragment="content" >
+       	
+		<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script  src="../resources/js/orderdetail.js"></script>
+		<div>
+            <h2>Orders</h2>
+            <table border="1" class="greeting-content">
+            <tr>
+            	<td>飲料名稱</td>
+            	<td>冰塊</td>
+            	<td>甜度</td>
+            	<td>數量</td>
+            </tr>
+            </table>
+        </div>    	
     </div>
   </body>
 </html>

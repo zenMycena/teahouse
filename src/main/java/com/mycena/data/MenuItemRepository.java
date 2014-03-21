@@ -9,4 +9,6 @@ public interface MenuItemRepository extends CrudRepository<MenuItem, Long>{
 	
 	@Query("from Message where id > :id")
     List<MenuItem> findWithMaxOrder(long id);
+	@Query("from MenuItem where name = ?1")
+	MenuItem findByName(String name);
 }

@@ -1,52 +1,39 @@
 package com.mycena.mvc;
 
 import java.io.UnsupportedEncodingException;
-
-import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
-
+import java.util.Date;
+import java.util.UUID;
 
 public class MenuItemForm {
-	//@NotEmpty(message = "name is required.")
-    private long id;
-	
-	//@NotEmpty(message = "name is required.")
-    private String name;
 
-    //@NotEmpty(message = "account is required.")
+    private long id;
+    
     private double hotPrice;
-    
-    //@NotEmpty(message = "account is required.")
     private double icePrice;
-    
-    //@NotEmpty(message = "account is required.")
-    private String tag;
-    
-    //@NotEmpty(message = "account is required.")
-    private int recommend;
-    
-    //@NotEmpty(message = "account is required.")
-    private int original;
-    
-    //@NotEmpty(message = "account is required.")
-    private int minToPrepare;
-    
-    private int ice;
-    
-    private int sweetness;
-    
-    private int quantity;
-    
     private double price;
+    private int minToPrepare; 
+    private int totalPrepare; 
+    private Date orderDate;
+    private int status;
+    private UUID uid;
+    private String name;
+    private String ice;
+    private String sweetness;
+    private int quantity;
+    private int totalQuantity;
     
+    private String tag;//
+    private int recommend;//
+    private int original; //
     
 	public double getPrice() {		return price;	}
 	public void setPrice(double price) {		this.price = price;	}
 	public int getQuantity() {		return quantity;	}
 	public void setQuantity(int quantity) {		this.quantity = quantity;	}
-	public int getSweetness() {		return sweetness;	}
-	public void setSweetness(int sweetness) {		this.sweetness = sweetness;	}
-	public int getIce() {		return ice;	}	
-	public void setIce(int ice) {		this.ice = ice;	}
+	public String getSweetness() {		return sweetness;	}
+	public void setSweetness(String sweetness) {		this.sweetness = sweetness;	}
+	public String getIce() {		return ice;	}	
+	public void setIce(String ice) {		this.ice = ice;	}
 	public long getId() {		return id;	}
 	public void setId(long id) {		this.id = id;	}
 	public String getName() {	return name;	}
@@ -63,5 +50,15 @@ public class MenuItemForm {
 	public void setOriginal(int original) {		this.original = original;	}
 	public int getMinToPrepare() {		return minToPrepare;	}
 	public void setMinToPrepare(int minToPrepare) {	this.minToPrepare = minToPrepare;	}
-       
+	public int getTotalPrepare() {		return totalPrepare;	}
+	public void setTotalPrepare(int totalPrepare) {		this.totalPrepare = totalPrepare;	}
+	public Date getOrderDate() {		return orderDate;	}
+	public void setOrderDate(Date orderDate) {		this.orderDate = orderDate;	}
+	public int getStatus() {		return status;	}
+	public void setStatus(int status) {		this.status = status;	}
+	public int getTotalQuantity() {		return totalQuantity;	}
+	public void setTotalQuantity(int totalQuantity) {		this.totalQuantity = totalQuantity;	}
+	public UUID getUid() {		return uid;	}
+	public void setUid(UUID uid) {		this.uid = uid;	}
+    
 }

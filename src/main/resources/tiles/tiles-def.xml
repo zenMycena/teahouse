@@ -49,5 +49,17 @@
   <definition name="title/menuitems/*"      	template="menuitems/{1} :: title"/>
   <definition name="head/menuitems/*"      	template="menuitems/{1} :: /html/head/link"/>
   
+  <!--*************   Admin ******************-->
+  <definition name="admin/*"      	template="layout">
+    <put-attribute name="menubar"   value="menubar/admin/{1}"/>
+    <put-attribute name="content"   value="content/admin/{1}"/>
+    <put-attribute name="title"     value="title/admin/{1}"/>
+    <put-attribute name="head"      value="head/admin/{1}"/>
+  </definition>
+  <definition name="menubar/admin/*"      template="admin/{1} :: menubar"/>
+  <definition name="content/admin/*"      template="admin/{1} :: content"/>
+  <definition name="title/admin/*"      	template="admin/{1} :: title"/>
+  <definition name="head/admin/*"      	template="admin/{1} :: /html/head/link"/>
+  
   
 </tiles-definitions>
