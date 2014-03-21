@@ -58,7 +58,7 @@ public class BasketController {
 		OrderList orderList = new OrderList();
 		orderList.setOrderDate(new Date());
 		orderList.setTotalPrice(basket.getPrice());
-		orderList.setStatus(1);
+		orderList.setStatus("未確認");
 		orderList.setUsername("user");
 		orderList.setUid(uid);
 		orderList.setPrepareTime(basket.getTotaltime());

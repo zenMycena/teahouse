@@ -33,6 +33,7 @@ public class RestOrderListController {
     	OrderList ol = new OrderList();
     	ol.setUsername("tim");
     	ol.setOrderDate(new Date());
+    	ol.setStatus("0");
     	UUID uid = new UUID(new Date().getTime(), new Date().getTime()+999);
     	Orders order1 = new Orders();
     	Orders order2 = new Orders();

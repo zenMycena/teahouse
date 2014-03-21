@@ -68,7 +68,7 @@
 			        </table>
 				</div> 
 		    </fieldset>
-	        <form class="form-horizontal" role="form">
+	        <form class="form-horizontal" role="form" th:action="@{/myOrder/takeorder}" th:object="${userInfo}"  method="post">	
 		        <fieldset>
 		            <h4 class="form-title">Delivery Information</h4>       
 		            <table class="flat-table">
@@ -96,7 +96,8 @@
 		            <!-- <input class="form-button pull-right" type="submit" value="Order" />  -->
 		            <div class="form-footer">
 			            <a class="linkBtn pull-left" href="/">回上步驟</a>
-			            <a class="linkBtn pull-right" href="myOrder">確定</a>
+			           <!--  <a class="linkBtn pull-right" href="myOrder">確定</a> -->
+			           <input  class="linkBtn pull-left"  type='submit'></input>
 		            </div>
 		        </fieldset>	        
 	        </form>
