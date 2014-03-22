@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
+
 
 @Controller
 @RequestMapping(value = "/basket")
 public class BasketController {
 	@Autowired
 	private Basket basket;
-	
 	@RequestMapping(value = "/removeFromBasket" , method = RequestMethod.POST)
+	
 	public String remove(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Remove {} from the basket", menuItem.getId());
 		basket.delete(menuItem.getId());

@@ -5,32 +5,7 @@
 	</head>
 	<body>
 		<div tiles:fragment="menubar">
-	  		<div class="navbar navbar-inverse navbar-static-top">
-		    	<div class="navbar-inner">
-		        	<div class="container">
-			            <div class="header">
-			            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
-			
-							<div class="nav-collapse collapse" 
-							     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-							  <div th:if="${currentUser != null}">
-							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-							          <input type="submit" value="Log out" />
-							      </form>
-							      <p class="navbar-text pull-right" th:text="${currentUser}">
-							        sample_user
-							      </p>
-							  </div>
-							  <ul class="nav">
-							  	<li><a herf="/">Menu</a></li>
-							  	<li><a th:href="@{management}">Management</a></li>
-							  	<li><a th:href="@{logout}">Logout</a></li>
-							  </ul>
-							</div>
-			            </div>
-		        	</div>
-		    	</div>
-		    </div>
+			<div th:include="navigationLayout :: AdminMag"></div>
 	  	</div>
 	  	<div tiles:fragment="content">    
 			<form class="offset3 span6 application-form form-horizontal" role="form" action="#" th:action="@{/menu/create}" th:object="${menuItemForm}"  method="post">
