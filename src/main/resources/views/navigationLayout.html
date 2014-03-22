@@ -22,12 +22,29 @@
 							        sample_user
 							      </p>
 							  </div>
-							  <ul class="nav pull-right">
-								   <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
-								   <li class="navbar-list"><a th:href="@{myOrder}">My Order</a></li>
-								   <li class="navbar-list"><a th:href="@{login}">Login</a></li>
-								   <li class="navbar-list"><a th:href="@{logout}">Logout</a></li>
-							  </ul>
+							  <div th:if="${currentUser == null}">
+								  <ul class="nav pull-right">
+									   <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
+									   
+									   <li class="navbar-list"><a th:href="@{login}">Login</a></li>
+									   
+								  </ul>
+							  </div>
+							  <div th:if="${currentUser != null}">
+<!-- 							  		  <p class="navbar-text pull-right" th:text="${currentUser}"> -->
+<!-- 								        sample_user -->
+<!-- 								      </p> -->
+								      
+							  		  <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
+							  		  <li class="navbar-list"><a th:href="@{myOrder}">My Order</a></li>
+							  		  <li class="navbar-text pull-right"><a th:href="${currentUser}">sample_user</a></li>
+								      <form class="navbar-list pull-right" th:action="@{/logout}" method="post">
+								          <input type="submit" value="Log out" />
+								      </form>
+								      
+<!-- 								      <li class="navbar-list"><a th:href="@{/logout}">Logout</a></li> -->
+							  </div>
+							  
 						</div>
 			        </div>
 				</div>

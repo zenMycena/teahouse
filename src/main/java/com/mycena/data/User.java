@@ -23,6 +23,7 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -56,7 +57,7 @@ public class User {
     private String phone;
     @NotEmpty(message = "Address is required.")
     private String address;
-    
+
     public User() {}
 
     public User(User user) {

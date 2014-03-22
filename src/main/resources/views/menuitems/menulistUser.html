@@ -1,14 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 	<head>
 		<title tiles:fragment="title">Hello! Welcome Back!</title>
-		<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 	</head>
 	<body>
 		<div tiles:fragment="menubar">
 			<div th:include="navigationLayout :: userMenu"></div>
 		</div>
 		<div tiles:fragment="content">
-		
+		<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 			<div class="form-horizontal span7 application-form">
 				<fieldset>
 				<h4 class="form-title">Menu</h4>
@@ -28,7 +27,6 @@
 
 				</fieldset>
 			</div>
-			
 			<div class="form-horizontal span4 application-form">
 				<fieldset>
 				    <h4 class="form-title">訂購清單</h4>
@@ -42,6 +40,7 @@
 				             	<th>杯數</th>
 				             	<th>價錢</th>
 				             	<th>取消</th>
+
 				            </tr>
 						</thead>
 						<tbody>

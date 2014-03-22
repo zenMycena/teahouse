@@ -4,8 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.UUID;
 
-import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
-
 
 public class MenuItemForm {
 	//@NotEmpty(message = "name is required.")

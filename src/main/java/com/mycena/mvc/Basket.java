@@ -42,7 +42,6 @@ public class Basket  implements Serializable {
 	
 	public void delete(UUID key) {
 		items.remove(key);
-		//items.remove(o);
 	}
 
 	
