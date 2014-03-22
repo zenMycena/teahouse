@@ -223,3 +223,19 @@ a.link-account {
 	background-color: #5A5A5A;
 	box-shadow: none;
 }
+
+.submitBtn input[type="submit"]{
+	background-color: transparent;
+	color: #999999;
+	border: 1px transparent solid;
+}
+.submitBtn input[type="submit"]:hover{
+	text-decoration: underline;
+	color: #FFFFFF;
+	
+}
+form.submitBtn  {
+	margin: 0;
+	position: absolute;
+	top: 17px;
+}

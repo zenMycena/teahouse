@@ -33,12 +33,12 @@
 							  		<ul class="nav pull-right">
 							  		  <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
 							  		  <li class="navbar-list"><a th:href="@{myOrder}" th:text="${currentUser.role}">sample_user</a></li>
-								      <form class="navbar-list" th:action="@{/logout}" method="post">
-<!-- 								          <a><input type="submit" value="Log out" /></a> -->
-								          <li class="navbar-list">
-								          	<a><input type="submit" value="Log out" /></a>
-								          </li>
-								      </form>
+							  		  <!-- 								          <a><input type="submit" value="Log out" /></a> -->
+								      <li class="">
+								           <form class="submitBtn" th:action="@{/logout}" method="post">
+								          		<input type="submit" value="Log out" />
+								     		</form>
+								      </li>
 								   	</ul>
 							  </div>
 						</div>
