@@ -28,6 +28,7 @@ public class MenuItemController {
     }
     @Autowired
 	private Basket basket;
+    
     /**************     CREATE      ***************/
     @RequestMapping(value="menu/create",method=RequestMethod.GET)
     public ModelAndView addPage(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm,String id) {
@@ -41,10 +42,10 @@ public class MenuItemController {
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
     	  menuItem.setTag(menuItemForm.getTag());
-    	  menuItem.setCdate(new Date());
+     	  menuItem.setCdate(new Date());
     	  menuItem.setRecommend(menuItemForm.getRecommend());
-    	  menuItem.setOriginal(menuItemForm.getOriginal());
-    	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
+//    	  menuItem.setOriginal(menuItemForm.getOriginal());
+//    	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
     	  menuItemRepository.save(menuItem);
     	  return "redirect:/";
     }

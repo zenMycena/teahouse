@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycena.data.MenuItem;
+import com.mycena.data.User;
+import com.mycena.security.CurrentUser;
 
 @Controller
 @RequestMapping()
@@ -18,8 +20,11 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/admin", method = RequestMethod.GET)
-	public String myOrderPage() {
-		return "admin/orders";
+	public String myOrderPage(@CurrentUser User currentUser) {
+		if (currentUser!=null && currentUser.getRole().equalsIgnoreCase("ADMIN")) {
+			return "admin/orders";
+		}
+		return "/";
 	}
 	
 //	/**************     CREATE      ***************/

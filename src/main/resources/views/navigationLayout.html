@@ -15,14 +15,6 @@
 			
 						<div class="nav-collapse collapse" 
 							 th:with="currentUser=${#httpServletRequest.userPrincipal?.principal}">
-<!-- 							  <div th:if="${currentUser != null}"> -->
-<!-- 							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post"> -->
-<!-- 							          <input type="submit" value="Log out" /> -->
-<!-- 							      </form> -->
-<!-- 							      <p class="navbar-text pull-right" th:text="${currentUser}"> -->
-<!-- 							        sample_user -->
-<!-- 							      </p> -->
-<!-- 							  </div> -->
 							  <div th:if="${currentUser == null}">
 								  <ul class="nav pull-right">
 									   <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
@@ -32,7 +24,7 @@
 							  <div th:if="${currentUser != null}">
 							  		<ul class="nav pull-right">
 							  		  <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
-							  		  <li class="navbar-list"><a th:href="@{myOrder}" th:text="${currentUser.role}">sample_user</a></li>
+							  		  <li class="navbar-list"><a th:href="@{myOrder}" th:text="${currentUser.name}">sample_user</a></li>
 								      <form class="navbar-list" th:action="@{/logout}" method="post">
 <!-- 								          <a><input type="submit" value="Log out" /></a> -->
 								          <li class="navbar-list">
@@ -48,7 +40,95 @@
 		</div>
 	</div>
 	
-	<div th:fragment="userMyorder">
+<!-- 	<div th:fragment="userMyorder"> -->
+<!-- 		<div class="navbar navbar-inverse navbar-static-top"> -->
+<!-- 	    	<div class="navbar-inner"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="header"> -->
+<!-- 			         	<a class="brand" th:href="@{/}"> -->
+<!-- 			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/> -->
+<!-- 			         	</a> -->
+<!-- 						<div class="nav-collapse collapse"  -->
+<!-- 							 th:with="currentUser=${#httpServletRequest.userPrincipal?.name}"> -->
+<!-- 							  <div th:if="${currentUser != null}"> -->
+<!-- 							  		<ul class="nav pull-right"> -->
+<!-- 							  		  <li class="navbar-list"><a th:href="@{/}">Menu</a></li> -->
+<!-- 							  		  <li class="active navbar-list"><a th:href="@{myOrder}" th:text="${currentUser}">sample_user</a></li> -->
+<!-- 								          <li class=" navbar-list"> -->
+<!-- 								          	<a><input type="submit" value="Log out" /></a> -->
+<!-- 								          </li> -->
+<!-- 								      </form> -->
+<!-- 								   	</ul> -->
+<!-- 							  </div> -->
+<!-- 						</div> -->
+<!-- 			        </div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+<!-- 	<div th:fragment="userCreate"> -->
+<!-- 		<div class="navbar navbar-inverse navbar-static-top"> -->
+<!-- 	    	<div class="navbar-inner"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="header"> -->
+<!-- 			         	<a class="brand" th:href="@{/}"> -->
+<!-- 			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/> -->
+<!-- 			         	</a> -->
+			
+<!-- 						<div class="nav-collapse collapse"  -->
+<!-- 						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}"> -->
+<!-- 							  <div th:if="${currentUser != null}"> -->
+<!-- 							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post"> -->
+<!-- 							          <input type="submit" value="Log out" /> -->
+<!-- 							      </form> -->
+<!-- 							      <p class="navbar-text pull-right" th:text="${currentUser}"> -->
+<!-- 							        sample_user -->
+<!-- 							      </p> -->
+<!-- 							  </div> -->
+<!-- 							  <ul class="nav"> -->
+<!-- 								   <li><a th:href="@{login}">Login</a></li> -->
+<!-- 								   <li><a th:href="@{myOrder}">My Order</a></li> -->
+<!-- 								   <li><a th:href="@{logout}">Logout</a></li> -->
+<!-- 								   <li><a href="user/create">userCreate</a></li> -->
+<!-- 								   <li><a href="deliveryDetail">delivery</a></li> -->
+<!-- 							  </ul> -->
+<!-- 						</div> -->
+<!-- 			        </div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+<!-- 	<div th:fragment="userUpdate"> -->
+<!-- 		<div class="navbar navbar-inverse navbar-static-top"> -->
+<!-- 	    	<div class="navbar-inner"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="header"> -->
+<!-- 			         	<a class="brand" th:href="@{/}"> -->
+<!-- 			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/> -->
+<!-- 			         	</a> -->
+<!-- 						<div class="nav-collapse collapse"  -->
+<!-- 						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}"> -->
+<!-- 							  <div th:if="${currentUser != null}"> -->
+<!-- 							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post"> -->
+<!-- 							          <input type="submit" value="Log out" /> -->
+<!-- 							      </form> -->
+<!-- 							      <p class="navbar-text pull-right" th:text="${currentUser}"> -->
+<!-- 							        sample_user -->
+<!-- 							      </p> -->
+<!-- 							  </div> -->
+<!-- 							  <ul class="nav"> -->
+<!-- 								   <li><a href="/">Menu</a></li> -->
+<!-- 							  </ul> -->
+<!-- 						</div> -->
+<!-- 			        </div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+	<div th:fragment="AdminMenu">
 		<div class="navbar navbar-inverse navbar-static-top">
 	    	<div class="navbar-inner">
 				<div class="container">
@@ -56,15 +136,16 @@
 			         	<a class="brand" th:href="@{/}">
 			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
 			         	</a>
+			
 						<div class="nav-collapse collapse" 
-							 th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-							  <div th:if="${currentUser != null}">
+							 th:with="currentUser=${#httpServletRequest.userPrincipal?.principal}">
+							  <div th:if="${currentUser.name != null}">
 							  		<ul class="nav pull-right">
-							  		  <li class="navbar-list"><a th:href="@{/}">Menu</a></li>
-							  		  <li class="active navbar-list"><a th:href="@{myOrder}" th:text="${currentUser}">sample_user</a></li>
+							  		  <li class="active navbar-list"><a th:href="@{/admin}">Accept</a></li>
+							  		  <li class="active navbar-list"><a th:href="@{/}">Menu</a></li>
 								      <form class="navbar-list" th:action="@{/logout}" method="post">
 <!-- 								          <a><input type="submit" value="Log out" /></a> -->
-								          <li class=" navbar-list">
+								          <li class="navbar-list">
 								          	<a><input type="submit" value="Log out" /></a>
 								          </li>
 								      </form>
@@ -77,124 +158,34 @@
 		</div>
 	</div>
 	
-	<div th:fragment="userCreate">
-		<div class="navbar navbar-inverse navbar-static-top">
-	    	<div class="navbar-inner">
-				<div class="container">
-					<div class="header">
-			         	<a class="brand" th:href="@{/}">
-			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
-			         	</a>
-			
-						<div class="nav-collapse collapse" 
-						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-							  <div th:if="${currentUser != null}">
-							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-							          <input type="submit" value="Log out" />
-							      </form>
-							      <p class="navbar-text pull-right" th:text="${currentUser}">
-							        sample_user
-							      </p>
-							  </div>
-							  <ul class="nav">
-								   <!-- <li><a th:href="@{login}">Login</a></li> -->
-								   <li><a th:href="@{myOrder}">My Order</a></li>
-								   <li><a th:href="@{logout}">Logout</a></li>
-								  <!--  <li><a href="user/create">userCreate</a></li>
-								   <li><a href="deliveryDetail">delivery</a></li> -->
-							  </ul>
-						</div>
-			        </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div th:fragment="userUpdate">
-		<div class="navbar navbar-inverse navbar-static-top">
-	    	<div class="navbar-inner">
-				<div class="container">
-					<div class="header">
-			         	<a class="brand" th:href="@{/}">
-			         		<img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/>
-			         	</a>
-						<div class="nav-collapse collapse" 
-						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-							  <div th:if="${currentUser != null}">
-							      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-							          <input type="submit" value="Log out" />
-							      </form>
-							      <p class="navbar-text pull-right" th:text="${currentUser}">
-							        sample_user
-							      </p>
-							  </div>
-							  <ul class="nav">
-								   <li><a href="/">Menu</a></li>
-							  </ul>
-						</div>
-			        </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div th:fragment="AdminMenu">
-		<div class="navbar navbar-inverse navbar-static-top">
-	    	<div class="navbar-inner">
-	        	<div class="container">
-		            <div class="header">
-		            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
+<!-- 	<div th:fragment="AdminMag"> -->
+<!--   		<div class="navbar navbar-inverse navbar-static-top"> -->
+<!-- 	    	<div class="navbar-inner"> -->
+<!-- 	        	<div class="container"> -->
+<!-- 		            <div class="header"> -->
+<!-- 		            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a> -->
 		
-						<div class="nav-collapse collapse" 
-						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-						  <div th:if="${currentUser != null}">
-						      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-						          <input type="submit" value="Log out" />
-						      </form>
-						      <p class="navbar-text pull-right" th:text="${currentUser}">
-						        sample_user
-						      </p>
-						  </div>
-						  <ul class="nav pull-right">
-						  	<li class="active navbar-list"><a herf="/">Menu</a></li>
-						  	<li class="navbar-list"><a th:href="@{management}">Management</a></li>
-						  	<li class="navbar-list"><a th:href="@{logout}">Logout</a></li>
-						  </ul>
-						</div>
-		            </div>
-	        	</div>
-	    	</div>
-	    </div>
-	</div>
-	
-	<div th:fragment="AdminMag">
-  		<div class="navbar navbar-inverse navbar-static-top">
-	    	<div class="navbar-inner">
-	        	<div class="container">
-		            <div class="header">
-		            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
-		
-						<div class="nav-collapse collapse" 
-						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-						  <div th:if="${currentUser != null}">
-						      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-						          <input type="submit" value="Log out" />
-						      </form>
-						      <p class="navbar-text pull-right" th:text="${currentUser}">
-						        sample_user
-						      </p>
-						  </div>
-						  <ul class="nav pull-right">
-						  	<li class="navbar-list"><a th:href="@{/}">Menu</a></li>
-						  	<li class="navbar-list"><a th:href="@{management}">Management</a></li>
-						  	<li class="navbar-list"><a th:href="@{logout}">Logout</a></li>
-						  </ul>
-						</div>
-		            </div>
-	        	</div>
-	    	</div>
-	    </div>
-	</div>
+<!-- 						<div class="nav-collapse collapse"  -->
+<!-- 						     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}"> -->
+<!-- 						  <div th:if="${currentUser != null}"> -->
+<!-- 						      <form class="navbar-form pull-right" th:action="@{/logout}" method="post"> -->
+<!-- 						          <input type="submit" value="Log out" /> -->
+<!-- 						      </form> -->
+<!-- 						      <p class="navbar-text pull-right" th:text="${currentUser}"> -->
+<!-- 						        sample_user -->
+<!-- 						      </p> -->
+<!-- 						  </div> -->
+<!-- 						  <ul class="nav pull-right"> -->
+<!-- 						  	<li class="navbar-list"><a th:href="@{/}">Menu</a></li> -->
+<!-- 						  	<li class="navbar-list"><a th:href="@{management}">Management</a></li> -->
+<!-- 						  	<li class="navbar-list"><a th:href="@{logout}">Logout</a></li> -->
+<!-- 						  </ul> -->
+<!-- 						</div> -->
+<!-- 		            </div> -->
+<!-- 	        	</div> -->
+<!-- 	    	</div> -->
+<!-- 	    </div> -->
+<!-- 	</div> -->
 	
 	<div th:fragment="Login">
 		<div tiles:fragment="menubar">

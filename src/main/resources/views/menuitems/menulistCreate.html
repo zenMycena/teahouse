@@ -5,19 +5,15 @@
 	</head>
 	<body>
 		<div tiles:fragment="menubar">
-			<div th:include="navigationLayout :: AdminMag"></div>
+			<div th:include="navigationLayout :: AdminMenu"></div>
 	  	</div>
 	  	<div tiles:fragment="content">    
 			<form class="offset3 span6 application-form form-horizontal" role="form" action="#" th:action="@{/menu/create}" th:object="${menuItemForm}"  method="post">
 				<fieldset>
 					<h3 class="form-title">新增商品</h3>
 					<div class="form-group">
-						<label class="label label-default label-size15" for="name">Name</label>
+						<label class="label label-default label-size15" for="商品名稱">Name</label>
 						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入商品名稱" />
-					</div>
-					<div class="form-group">
-						<label class="label label-default label-size15" for="name">姓名</label>
-					<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入您的姓名" />
 					</div>
 					
 					<div class="form-group">
@@ -29,8 +25,8 @@
 						<input class="form-input" type="text" th:field="*{icePrice}" placeholder="請輸入冰飲價格" />
 					</div>
 					<div class="checkbox-group">
-						<label class="label label-default label-size15" for="tag">種類</label>
-						<select class="select-list">
+						<label class="label label-default label-size15">種類</label>
+						<select class="select-list" th:field="*{tag}">
 							<option value="1">原味茶</option>
 							<option value="2">熱門排行</option>
 							<option value="3">調味茶</option>
@@ -41,26 +37,22 @@
 							<option value="8">冬季限定</option>
 						</select> 
 					</div>
-					<div class="form-group">
-						<label class="label label-default label-size15" for="cdate">Create Date:</label>
-						<input class="form-input" type="text" placeholder="Create Date" />
-					</div>
 					<div class="checkbox-group">
 						<span class="input-group-addon">
-						  <input type="checkbox" />
+						  <input type="checkbox" th:field="*{recommend}" value="1"/>
 						</span>
 						<span>大力推薦</span>
 					</div>
 					
 					<div class="checkbox-group">
 						<span class="input-group-addon">
-						  <input type="checkbox" />
+						  <input type="checkbox" th:field="*{original}" value="1"/>
 						</span>
 						<span>不提供去冰</span>
 					</div>
 					<div class="form-group">
-						<label class="label label-default label-size15" for="mintoprepare">準備時間</label>
-						<input class="form-input" type="text" placeholder="準備時間" />
+						<label class="label label-default label-size15" >準備時間</label>
+						<input class="form-input" type="text" th:field="*{minToPrepare}" placeholder="準備時間" />
 					</div>
 					<div class="form-group form-submit-btn">
 						<input class="form-button" type="submit" value="新增產品"/>
