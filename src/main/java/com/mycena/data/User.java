@@ -23,6 +23,7 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -57,6 +58,8 @@ public class User {
     @NotEmpty(message = "Address is required.")
     private String address;
     
+    private String role;
+
     public User() {}
 
     public User(User user) {
@@ -66,7 +69,8 @@ public class User {
         this.password = user.password;
         this.email = user.email;
         this.phone = user.phone;
-        this.address = user.address;       
+        this.address = user.address;  
+        this.role = user.role;
     }
 
 	public Long getId() {		return id;	}
@@ -83,6 +87,8 @@ public class User {
 	public void setPhone(String phone) {		this.phone = phone;	}
 	public String getAddress() {		return address;	}
 	public void setAddress(String address) {		this.address = address; }
+	public String getRole() {return role;}
+	public void setRole(String role) {this.role = role;}
     
     
  /*   public String getPassword() {        return password;    }

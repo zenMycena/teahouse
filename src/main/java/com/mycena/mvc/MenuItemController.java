@@ -8,6 +8,7 @@ import java.util.List;
 import com.mycena.data.MenuItem;
 import com.mycena.data.MenuItemRepository;
 import com.mycena.data.User;
+import com.mycena.security.CurrentUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,13 +45,14 @@ public class MenuItemController {
     	  menuItem.setRecommend(menuItemForm.getRecommend());
     	  menuItem.setOriginal(menuItemForm.getOriginal());
     	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
-    	 menuItemRepository.save(menuItem);
+    	  menuItemRepository.save(menuItem);
     	  return "redirect:/";
     }
     
     /**************     READ      ***************/
     @RequestMapping(value="",method=RequestMethod.GET)
-    public ModelAndView getList(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
+    public ModelAndView getList(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem, @CurrentUser User currentUser) {
+    	
     	
     	ArrayList<MenuItem> al = new ArrayList<>();
         long maxOrder;
@@ -59,11 +61,19 @@ public class MenuItemController {
     		for (MenuItem menuitem : menuitems) {
 				al.add(menuitem);
 			}
+    		if (currentUser!=null && currentUser.getRole().equalsIgnoreCase("ADMIN")) {
+    			return new ModelAndView("menuitems/menulistAdmin", "menuitems", menuitems);
+			}
+
     		return new ModelAndView("menuitems/menulistUser", "menuitems", menuitems);
 		}else {
 			maxOrder = al.get(al.size()-1).getId();
 			List<MenuItem> menuitems = menuItemRepository.findWithMaxOrder(maxOrder);
 			al.addAll(menuitems);
+			if (currentUser!=null && currentUser.getRole().equalsIgnoreCase("ADMIN")) {
+				return new ModelAndView("menuitems/menulistAdmin", "menuitems", al);
+			}
+
 			return new ModelAndView("menuitems/menulistUser", "menuitems", al);
 		}
     	
@@ -104,9 +114,7 @@ public class MenuItemController {
     
     @RequestMapping(value="menu/delete",method=RequestMethod.POST)
     public String deleteMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
-
     	 MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
-
     	 menuItemRepository.delete(menuItem);
     	 return "redirect:/";
     }

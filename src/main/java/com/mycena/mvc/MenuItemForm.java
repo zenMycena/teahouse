@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.gemstone.gemfire.internal.cache.FilterProfile.interestType;
 import com.mycena.data.Orders;
 
 

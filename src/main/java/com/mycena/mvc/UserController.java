@@ -15,10 +15,12 @@ import com.mycena.data.UserRepository;
 @RequestMapping("/user")
 public class UserController {
     private UserRepository userRepository;
+    
     @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    
     /**************     CREATE      ***************/
     @RequestMapping(value="/create",method=RequestMethod.GET)
     public ModelAndView addUser(@ModelAttribute(value="userForm")UserForm userForm , String id) {

@@ -33,6 +33,7 @@ public class MyOrderController {
 	OrderListRepository orderListRepository;
 	@Autowired
 	OrderRepository orderRepository;
+
 	int n = 0;
 	@RequestMapping(value="/{account}",method = RequestMethod.GET)
 	public ModelAndView myOrderPage(@PathVariable String account) {
