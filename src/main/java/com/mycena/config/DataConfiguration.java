@@ -75,7 +75,7 @@ public class DataConfiguration {
         
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(Message.class.getPackage().getName());
+        factory.setPackagesToScan("com.mycena.data");
         factory.setDataSource(dataSource());
 
         return factory;

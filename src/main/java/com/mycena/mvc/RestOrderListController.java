@@ -53,9 +53,9 @@ public class RestOrderListController {
     
     
     /**************************        User rest         *********************************/
-    @RequestMapping("/getuserorder/{username}/{id}")
-    public @ResponseBody List<OrderList> getUserOrder(@PathVariable String username, @PathVariable long id) {
-    	return orderListRepository.findUserOrder(username, id);
+    @RequestMapping("/getuserorder/{account}/{uid}")
+    public @ResponseBody OrderList getUserOrder(@PathVariable String account, @PathVariable UUID uid) {
+    	return orderListRepository.findUserOrder(account, uid);
     }    
     
     /**************************        Admin rest         *********************************/
