@@ -7,7 +7,7 @@ insert into message(id,created,to_id,summary,text) values (100,'2013-10-04 10:00
 insert into message(id,created,to_id,summary,text) values (110,'2013-10-04 10:00:00',2,'Hello Luke','This message is for Luke');
 
 insert into menuitem(id,name,hotprice,iceprice,tag,cdate,recommend,original,mintoprepare) values
-(1,'蔗香烏龍',20.00,20.00,'原味茶','2013-10-04 10:00:00',0,0,2),
+(1,'蔗香烏龍',20.00,20.00,'原味茶','2013-10-04 10:00:00',1,1,2),
 (2,'茉香綠茶',0,25.00,'原味茶','2013-10-04 10:00:00',0,0,2),
 (3,'特級翡翠綠',30.00,30.00,'原味茶','2013-10-04 10:00:00',0,0,2),
 (4,'特級翡翠綠',30.00,30.00,'原味茶','2013-10-04 10:00:00',0,0,2),

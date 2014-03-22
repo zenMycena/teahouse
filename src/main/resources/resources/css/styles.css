@@ -10,8 +10,14 @@
     color: transparent;
 }
 
-.menuSelect select, .menuSelect input{
-	width: 60px;
+.menuSelect select{
+	width: 45px;
+}
+.menuSelect input{
+	width: 20px;
+}
+.menuInputSubmut input{
+	width: 45px;
 }
 
 a.linkBtn {
@@ -30,6 +36,19 @@ a.linkBtn {
 .linkBtn:hover{
 	color: #ffffff;
 	background-color: #415b76;
+}
+input.linkBtn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #34495E #34495E -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 3px 2px 1px;
+}
+input.linkBtn:hover {
+    border-color: #415b76 #415b76 -moz-use-text-color;
 }
 
 .application-form{
