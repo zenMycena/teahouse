@@ -16,6 +16,7 @@ public class Orders {
 	private String ice;
 	private String sweetness;
 	private int quantity;
+	private double price;
 	private UUID uid;
 /*	@ManyToOne
 	@JoinColumn(name="orderList")
@@ -32,6 +33,8 @@ public class Orders {
 	public void setQuantity(int quantity) {		this.quantity = quantity;	}
 	public UUID getUid() {		return uid;	}
 	public void setUid(UUID uid) {		this.uid = uid;	}
+	public double getPrice() {		return price;	}
+	public void setPrice(double price) {		this.price = price;	}
 
 	
 	

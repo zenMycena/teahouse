@@ -1,23 +1,29 @@
-			var user="tim";
-			var id =1;
-
-			function getAllorderlist(){
-				    $.ajax({
-				        url: "http://localhost:8080/getuserorder/" + user  +"/" + id,
-				        type: "GET",
-				        dataType: "json",
-				        success: function(Jdata) {
-				        	for( var i in Jdata){
-				        		
-				        		$(".greeting-content").append(Jdata[i].username+"<br>");
-				        		
-				        	}				  
-				        }, 
-				          error: function() {      
-				            //alert("ERROR!!!");
-				       }        
-				      });
+			function checkFinishDate(){
+				    if($(".finishdate").html()==""){
+				    	$(".finishdate").append("處理中請稍候！");
+				    }
+				    	
 			}
+			function checkorder(){
+				
+				$.ajax({
+			        url: "http://localhost:8080/getuserorder/"+$(".account").html()+"/"+$(".uid").html(),
+			        type: "GET",
+			        dataType: "json",
+			        success: function(Jdata) {
+			        	if(Jdata.status != "未確認"){
+			        		
+			        		$(".status").html(Jdata.status);
+			        		$(".finishdate").html(new Date(Jdata.finishDate));
+			        		clearInterval(intervalID);
+			        	}
+			        }, 
+			          error: function() {
+			       }        
+			      });
+			    	
+		}
 			     
-			    window.onload = function ()   {    	getAllorderlist()    }
-			    //setInterval(function(){ getAllorderlist() },10000);
+			    window.onload = function ()   {    	checkFinishDate()    }
+			    var intervalID=setInterval(function(){ checkorder() },1000);
+			    

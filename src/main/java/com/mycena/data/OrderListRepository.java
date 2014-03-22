@@ -21,12 +21,18 @@ public interface OrderListRepository extends CrudRepository<OrderList, Long>{
 	@Query(value="from OrderList order by id desc")
 	List<OrderList> findTopid();
 	
-	@Query(value="from OrderList where username = ?1 and id = ?2")
-	List<OrderList> findUserOrder(String username, long id);
+	@Query(value="from OrderList where account = ?1 and uid = ?2")
+	OrderList findUserOrder(String account, UUID uid);
 
 	@Query(value="update OrderList  set status='準備中' where id = ?1")
 	void changeStatusById(long id);
 	
 	@Query(value="update OrderList  set status='完成' where id = ?1")
 	void changeFinalStatusById(long id);
+	
+	OrderList findByUid(UUID uid);
+	
+	List<OrderList> findByUsername(String username);
+	
+	List<OrderList> findByAccount(String account);
 }

@@ -50,38 +50,11 @@ public class BasketController {
 		menuItem.setSweetness(ParseCondimentToString.sweetnessToString(menuItem.getSweetness()));
 		menuItem.setMinToPrepare(menuItemRepository.findByName(menuItem.getName()).getMinToPrepare()*menuItem.getQuantity());
 		basket.add(menuItem);
-		System.out.println(menuItem.getName());
+		//System.out.println(menuItem.getName());
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/save" , method = RequestMethod.POST)
-	public String save() {
-		UUID uid = new UUID(new Date().getTime(), new Date().getTime()+999);
-		OrderList orderList = new OrderList();
-		orderList.setOrderDate(new Date());
-		orderList.setTotalPrice(basket.getPrice());
-		orderList.setStatus("未確認");
-		orderList.setUsername("user");
-		orderList.setUid(uid);
-		orderList.setPrepareTime(basket.getTotaltime());
-		orderListRepository.save(orderList);
-		Iterator<MenuItemForm> list = basket.getItems().iterator();
-		while (list.hasNext()) {
-			Orders orders = new Orders();
-			MenuItemForm menuItemForm = list.next();
-			orders.setBeverageName(menuItemForm.getName());
-			orders.setIce(menuItemForm.getIce());
-			orders.setQuantity(menuItemForm.getQuantity());
-			orders.setSweetness(menuItemForm.getSweetness());
-			orders.setUid(uid); 
-			
-			orderRepository.save(orders);
-		} 
-		
-		basket.clear();
-		return "redirect:/";
-	}
 			
 	private double countPrice(MenuItemForm m){
 		

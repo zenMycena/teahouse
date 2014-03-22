@@ -75,7 +75,7 @@
 		            <table class="flat-table">
 		            	<tr>
 		            		<td>Account:</td>
-		            		<td>jim0123</td>
+		            		<td><span name="account" th:text="${currentuser}"></span></td>
 		            	</tr>
 		            	<tr>
 		            		<td>Name:</td>
@@ -98,6 +98,7 @@
 		            <div class="form-footer">
 			            <a class="linkBtn pull-left" href="/">回上步驟</a>
 			           <!--  <a class="linkBtn pull-right" href="myOrder">確定</a> -->
+			           <input type="hidden" name="account" th:value="user"/>
 			           <input  class="linkBtn pull-left"  type='submit'></input>
 		            </div>
 		        </fieldset>	        

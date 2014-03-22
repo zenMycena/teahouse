@@ -14,6 +14,7 @@ public class OrderList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String username;
+	private String account;
 	private double totalPrice;
 	private Date orderDate;
 	private String status;
@@ -22,9 +23,14 @@ public class OrderList {
 	private UUID uid;
 	private String address;
 	private String phone;
+	private String email;
 	private int prepareTime;
 	private Date finishDate;
 	
+	public String getAccount() {		return account;	}
+	public void setAccount(String account) {		this.account = account;	}
+	public String getEmail() {		return email;	}
+	public void setEmail(String email) {		this.email = email;	}
 	public Date getFinishDate() {		return finishDate;	}
 	public void setFinishDate(Date finishDate) {		this.finishDate = finishDate;	}
 	public long getId() {		return id;	}
