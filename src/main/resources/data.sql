@@ -1,7 +1,7 @@
-insert into user(id,name,account,password,email,phone,address) values (1,'Admin','admin','admin','admin@gmail.com','0987123456','cha-ha-er st.1');
-insert into user(id,name,account,password,email,phone,address) values (2,'Zen','zen','1234','zen@gmail.com','0987654321','cha-ha-er st.2');
-insert into user(id,name,account,password,email,phone,address) values (3,'Jade','jade','1234','jade@gmail.com','0912345678','cha-ha-er st.3');
-insert into user(id,name,account,password,email,phone,address) values (4,'Teng','teng','1234','teng@gmail.com','0999999999','cha-ha-er st.4');
+insert into user(id,name,account,password,email,phone,address,role) values (1,'Admin','admin','admin','admin@gmail.com','0987123456','cha-ha-er st.1','ADMIN');
+insert into user(id,name,account,password,email,phone,address,role) values (2,'Zen','zen','1234','zen@gmail.com','0987654321','cha-ha-er st.2','USER');
+insert into user(id,name,account,password,email,phone,address,role) values (3,'Jade','jade','1234','jade@gmail.com','0912345678','cha-ha-er st.3','USER');
+insert into user(id,name,account,password,email,phone,address,role) values (4,'Teng','teng','1234','teng@gmail.com','0999999999','cha-ha-er st.4','USER');
 
 insert into message(id,created,to_id,summary,text) values (100,'2013-10-04 10:00:00',1,'Hello Rob','This message is for Rob');
 insert into message(id,created,to_id,summary,text) values (110,'2013-10-04 10:00:00',2,'Hello Luke','This message is for Luke');

@@ -30,6 +30,7 @@ public class MyOrderController {
 	OrderListRepository orderListRepository;
 	@Autowired
 	OrderRepository orderRepository;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String myOrderPage() {
 		return "menuitems/myOrder";
