@@ -11,7 +11,7 @@
 		
 			<div class="form-horizontal span7 application-form">
 				<fieldset>
-				<h4 class="form-title">Menu List</h4>
+				<h4 class="form-title">Menu</h4>
 
 					<div class="orderMenu span12">
 					
@@ -31,17 +31,17 @@
 			
 			<div class="form-horizontal span4 application-form">
 				<fieldset>
-				    <h4 class="form-title">Order list</h4>
+				    <h4 class="form-title">訂購清單</h4>
 				    <table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-				            	<td>名稱</td>
-				             	<td>冰塊</td>
-				             	<td>甜度</td>
+				            	<th>名稱</th>
+				             	<th>冰塊</th>
+				             	<th>甜度</th>
 				             	<!-- <td>珍珠</td> -->
-				             	<td>杯數</td>
-				             	<td>價錢</td>
-				             	<td>取消</td>
+				             	<th>杯數</th>
+				             	<th>價錢</th>
+				             	<th>取消</th>
 				            </tr>
 						</thead>
 						<tbody>
@@ -56,7 +56,7 @@
 										<td th:text="${basketItem.quantity}">杯數</td>
 										<td  th:text="${basketItem.price}">價錢</td>
 										<input id="id" name="id" type="hidden" th:value="${basketItem.id}" />
-										<th class="menuSelect"><input type="submit" value="Remove"></input></th>  
+										<td class="menuSelect"><input type="submit" value="Remove"></input></td>  
 									</form>  	
 								</tr>
 						</tbody>

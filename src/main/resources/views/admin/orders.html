@@ -3,79 +3,62 @@
     <title tiles:fragment="title">Order </title>
   </head>
   <body>
-  	<div tiles:fragment="menubar">
-  		<div class="navbar navbar-inverse navbar-static-top">
-	        <div class="navbar-inner">
-	          <div class="container">
-	            <div class="header">
-	            	<a class="brand" th:href="@{/}"><img th:src="@{/resources/img/tealogo.png}" alt="Spring Security Sample"/></a>
-	
-					<div class="nav-collapse collapse" 
-					     th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
-					  <div th:if="${currentUser != null}">
-					      <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-					          <input type="submit" value="Log out" />
-					      </form>
-					      <p class="navbar-text pull-right" th:text="${currentUser}">
-					        sample_user
-					      </p>
-					  </div>
-					  <ul class="nav">
-					    <li><a class="active" th:href="@{myOrder}">My Order</a></li>
-					    <li><a th:href="@{logout}">Logout</a></li>
-					  </ul>
-					</div>
-	            </div>
-	        </div>
-	      </div>
-	    </div>
-  	</div>
-    <div tiles:fragment="content" >
+	<div tiles:fragment="menubar">
+		<div th:include="navigationLayout :: AdminMag"></div>
+	</div>
+    <div tiles:fragment="content">
        	
 		<script  src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script  src="../resources/js/order.js"></script>
-		<div>
-            <h2>Orders</h2>
-            <table border="1" class="order">
-            <tr>
-            	<td  class='uuid'>訂單編號</td>
-            	<td  class='uuid'>名稱</td>
-            	<td>價錢</td>
-            	<td>預計時間</td>
-            	<td>狀態</td>
-            	<td>完成</td>
-            </tr>
-            </table>
-        </div>    
-
-
-		<div>
-            <h2>Orders</h2>
-            <table  border="1" >
-            <thead>
-            <tr>
-            	<th>飲料名稱</th>
-            	<th>冰塊</th>
-            	<th>甜度</th>
-            	<th>數量</th>
-            </tr>
-            </thead>
-            <tbody class="orderdetail">
-            </tbody>
-            </table>
-            <div class="order-detail"></div>
+		<div class="span11 application-form">
+			<fieldset>
+				<h4 class="form-title">Orders Detail</h4>
+	            <table  border="1" >
+		            <thead>
+			            <tr>
+			            	<th style="width: 5%;">飲料名稱</th>
+			            	<th style="width: 5%;">冰塊</th>
+			            	<th style="width: 5%;">甜度</th>
+			            	<th style="width: 5%;">數量</th>
+			            </tr>
+		            </thead>
+		            <tbody class="orderdetail">
+		            </tbody>
+		        </table>
+	            <div class="order-detail"></div>
+			</fieldset>
+            
         </div>    
         
-        <div>
-            <h2>Finish Orders</h2>
-            <table  border="1"  class="finishorder">
+		<div class="span8 application-form">
+			<fieldset>
+	            <h4 class="form-title">Orders List</h4>
+	            <table border="1" class="order">
 	            <tr>
-	            	<td  class='uuid'>訂單編號</td>
-	            	<td  class='uuid'>名稱</td>
-	            	<td>價錢</td>
-	            	<td>時間</td>
+	            	<td class="uuid">訂單編號</td>
+	            	<td class="uuid" style="width: 5%;">名稱</td>
+	            	<td class="" style="width: 4%;">價錢</td>
+	            	<td class="" style="width: 25%;">預計時間</td>
+	            	<td class="" style="width: 7%;">狀態</td>
+	            	<td class="" style="width: 7%;">完成</td>
 	            </tr>
-            </table>
+	            </table>
+	    	</fieldset>
+        </div>    
+
+        <div class="span3 application-form">
+        	<fieldset>
+	            <h4 class="form-title">Finish Orders</h4>
+	            <table  border="1"  class="finishorder">
+		            <tr>
+		            	<td class="uuid" style="width: 1%;">訂單編號</td>
+		            	<td class="uuid" style="width: 1%;">名稱</td>
+		            	<td class="" style="width: 1%;">價錢</td>
+		            	<td class="" style="width: 1%;">時間</td>
+		            </tr>
+	            </table>
+        	
+        	</fieldset>
         </div>    	
     </div>
    
