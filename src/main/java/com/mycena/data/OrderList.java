@@ -16,11 +16,17 @@ public class OrderList {
 	private String username;
 	private double totalPrice;
 	private Date orderDate;
-	private int status;
+	private String status;
 /*	@OneToMany(mappedBy="orderList")
     private Set<Orders> orders;*/
 	private UUID uid;
+	private String address;
+	private String phone;
+	private int prepareTime;
+	private Date finishDate;
 	
+	public Date getFinishDate() {		return finishDate;	}
+	public void setFinishDate(Date finishDate) {		this.finishDate = finishDate;	}
 	public long getId() {		return id;	}
 	public void setId(long id) {		this.id = id;	}
 	public String getUsername() {		return username;	}
@@ -29,16 +35,16 @@ public class OrderList {
 	public void setTotalPrice(double totalPrice) {		this.totalPrice = totalPrice;	}
 	public Date getOrderDate() {		return orderDate;	}
 	public void setOrderDate(Date orderDate) {		this.orderDate = orderDate;	}
-	public int getStatus() {		return status;	}
-	public void setStatus(int status) {		this.status = status;	}
+	public String getStatus() {		return status;	}
+	public void setStatus(String status) {		this.status = status;	}
 /*	public Set<Orders> getOrders() {		return orders;	}
 	public void setOrders(Set<Orders> orders) {		this.orders = orders;	}*/
-	public UUID getUid() {
-		return uid;
-	}
-	public void setUid(UUID uid) {
-		this.uid = uid;
-	}
-	
-	
+	public UUID getUid() {		return uid;	}
+	public void setUid(UUID uid) {		this.uid = uid;	}
+	public String getAddress() {		return address;	}
+	public void setAddress(String address) {		this.address = address;	}
+	public String getPhone() {		return phone;	}
+	public void setPhone(String phone) {		this.phone = phone;	}
+	public int getPrepareTime() {		return prepareTime;	}
+	public void setPrepareTime(int prepareTime) {		this.prepareTime = prepareTime;	}
 }

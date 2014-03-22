@@ -97,6 +97,20 @@ public class Basket  implements Serializable {
 		return 0;
 	}
 	
+	public int  getTotaltime(){
+		List<MenuItemForm> list = findAll();
+		if (getSize() !=0) {
+			double total = 0;
+			for (int i = 0; i < getSize(); i++) {
+				total=list.get(i).getMinToPrepare()+total;
+			}
+			
+		return (int)total;
+		}
+		
+		return 0;
+	}
+	
 	public void clear() {
 		items = new HashMap<UUID,MenuItemForm>();
 	}

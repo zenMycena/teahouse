@@ -27,16 +27,19 @@ public class RestOrderListController {
     }
     @Autowired
    	private Basket basket;
-    @RequestMapping("/getorderlist")
-    public @ResponseBody Iterable<OrderList> getorderlist() {
+    
+    @RequestMapping("/adddata")
+    public @ResponseBody Iterable<OrderList> adddata() {
     	OrderList ol = new OrderList();
     	ol.setUsername("tim");
     	ol.setOrderDate(new Date());
+    	ol.setStatus("0");
     	UUID uid = new UUID(new Date().getTime(), new Date().getTime()+999);
     	Orders order1 = new Orders();
     	Orders order2 = new Orders();
     	ol.setUid(uid);
-    	
+    	ol.setPhone("0987654321");
+    	ol.setAddress("asdasdasdsd");
     	order1.setBeverageName("aa");
     	order1.setUid(uid);
     	order2.setBeverageName("aac");
@@ -44,7 +47,31 @@ public class RestOrderListController {
     	orderListRepository.save(ol);
     	orderRepository.save(order1);
     	orderRepository.save(order2);
-    	return orderListRepository.findAll();
+    	return orderListRepository.findUncompleteOrders();
+    }
+    /**************************        Add fake data         *********************************/
+    
+    
+    /**************************        User rest         *********************************/
+    @RequestMapping("/getuserorder/{username}/{id}")
+    public @ResponseBody List<OrderList> getUserOrder(@PathVariable String username, @PathVariable long id) {
+    	return orderListRepository.findUserOrder(username, id);
+    }    
+    
+    /**************************        Admin rest         *********************************/
+    @RequestMapping("/getallorderlist")
+    public @ResponseBody Iterable<OrderList> getorderlist() {
+    	return orderListRepository.findUncompleteOrders();
+    }
+    
+    @RequestMapping("/getneworderlist/{id}")
+    public @ResponseBody Iterable<OrderList> getneworderlist(@PathVariable long id) {
+    	return orderListRepository.findNewOrders(id);
+    }
+    
+    @RequestMapping("/gettopid")
+    public @ResponseBody OrderList gettopid() {
+    	return orderListRepository.findTopid().get(0);
     }
     
     @RequestMapping("/getorders/{uid}")
@@ -57,19 +84,10 @@ public class RestOrderListController {
     @RequestMapping("/finishorders")
     public @ResponseBody List<OrderList> finishorders() {
     	
-        return orderListRepository.findByStatus(0);
+        return orderListRepository.findByStatus();
         	
     }
+
     
-    @RequestMapping("/checkorder")
-    public @ResponseBody boolean checkorder() {
-    	if (true) {
-    		 return true;
-		}else {
-			 return false;
-		}
-       
-        	
-    }
     
 }
