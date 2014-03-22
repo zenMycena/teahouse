@@ -70,6 +70,7 @@
 				          error: function() {      
 				       }        
 				      });
+				    playAudio();
 			} 
 			   
 			     
@@ -199,6 +200,12 @@
 			    	 }
 			    	 
 				}
+			     function playAudio(){
+			    	 $(".audio").append("<audio id=\"video\" autoplay=\"true\"><source src=\"./resources/audio/john_rington.mp3\" type=\"audio/mpeg\" /></audio>");
+			     }
+			     
+			     
+			     
 			    window.onload = function ()   {    	
 			    	getAllorderlist();   
 			    	getFinishOrder();
