@@ -46,19 +46,19 @@
 					</div>
 					<div class="form-group">
 						<label class="label label-default label-size15" for="name">商品名稱</label>
-						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入商品新名稱" />
+						<input class="form-input" type="text" th:field="*{name}" th:placeholder="${menuItems.name}" value="${menuItems.name}" />
 					</div>
 					<div class="form-group">
 						<label class="label label-default label-size15" for="hotprice">熱飲價格</label>
-						<input class="form-input" type="text" th:field="*{name}" placeholder="請輸入熱飲新價格" />
+						<input class="form-input" type="number" th:field="*{hotPrice}" th:placeholder="${menuItems.hotPrice}" th:value="${menuItems.hotPrice}" />
 					</div>
 					<div class="form-group">
 						<label class="label label-default label-size15" for="iceprice">冰飲價格</label>
-						<input class="form-input" type="text" th:field="*{icePrice}" placeholder="請輸入冰飲新價格" />
+						<input class="form-input" type="number" th:field="*{icePrice}" th:placeholder="${menuItems.icePrice}" th:value="${menuItems.icePrice}"/>
 					</div>
 					<div class="checkbox-group">
 						<label class="label label-default label-size15" for="tag">種類</label>
-						<select class="select-list">
+						<select class="select-list" th:value="${menuItems.tag}">
 							<option value="1">原味茶</option>
 							<option value="2">熱門排行</option>
 							<option value="3">調味茶</option>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label label-default label-size15" for="mintoprepare">準備時間</label>
-						<input class="form-input" type="text" placeholder="準備時間" />
+						<input class="form-input" type="text" th:placeholder="${menuItems.minToPrepare}" />
 					</div>
 					<div class="form-group form-submit-btn">
 						<input class="form-button" type="submit" value="更新"/>

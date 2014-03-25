@@ -23,7 +23,7 @@
 				<tr th:if="${menuitems.empty}">
 					<td colspan="3">No messages</td>
 				</tr>
-				<form method="POST"> 
+<!-- 				<form method="POST">  -->
 					<tr th:if="${menuitem.tag} == ${tagName}">
 						<td th:text="${menuitem.name}">name</td>
 						<td th:text="${menuitem.hotPrice}">hotPrice</td>
@@ -38,7 +38,7 @@
 	                    	<a class="linkBtn" th:href="@{|/menu/delete/${menuitem.id}|}">Delete</a>
 	                    </td>            
 					</tr>
-				</form>
+<!-- 				</form> -->
 			</tbody>
 		</table>
 	</div>

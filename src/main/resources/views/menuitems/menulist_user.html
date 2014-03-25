@@ -71,14 +71,14 @@
 						<tbody>
 							
 								<tr th:each="basketItem : ${basket.items}">
-									<form method="POST" th:action="@{/basket/removeFromBasket}">
+									<form method="POST" th:action="@{/basket/removeFromBasket}" th:object="${menuItemForm}">
 										<td th:text="${basketItem.name}"></td>
 										<td th:text="${basketItem.ice}">冰</td>
 										<td th:text="${basketItem.sweetness}">無糖</td>
 										<!-- <td>不加</td> -->
 										<td th:text="${basketItem.quantity}">杯數</td>
 										<td  th:text="${basketItem.price}">價錢</td>
-										<input id="id" name="id" type="hidden" th:value="${basketItem.id}" />
+										<input id="uid" name="uid" type="hidden" th:value="${basketItem.uid}" />
 										<th class="menuSelect"><input type="submit" value="Remove"></input></th>  
 									</form>  	
 								</tr>

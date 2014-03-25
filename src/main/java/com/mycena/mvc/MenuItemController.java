@@ -8,6 +8,8 @@ import java.util.List;
 import com.mycena.data.MenuItem;
 import com.mycena.data.MenuItemRepository;
 import com.mycena.data.User;
+import com.mycena.mvc.utils.StringParser.ParserOperte;
+import com.mycena.mvc.utils.StringParser.operate.BeverageTagParserOperate;
 import com.mycena.security.CurrentUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class MenuItemController {
     private MenuItemRepository menuItemRepository;
     @Autowired
@@ -28,6 +30,8 @@ public class MenuItemController {
     }
     @Autowired
 	private Basket basket;
+    
+    ParserOperte beveragTagParserOperte = new BeverageTagParserOperate();
     
     /**************     CREATE      ***************/
     @RequestMapping(value="menu/create",method=RequestMethod.GET)
@@ -39,9 +43,10 @@ public class MenuItemController {
     public String addMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
     	  MenuItem menuItem = new MenuItem();
     	  menuItem.setName(menuItemForm.getName());
+    	  System.out.println(menuItem.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
-    	  menuItem.setTag(menuItemForm.getTag());
+    	  menuItem.setTag(beveragTagParserOperte.webStringParser(menuItemForm.getTag()));
      	  menuItem.setCdate(new Date());
     	  menuItem.setRecommend(menuItemForm.getRecommend());
 //    	  menuItem.setOriginal(menuItemForm.getOriginal());
@@ -51,7 +56,7 @@ public class MenuItemController {
     }
     
     /**************     READ      ***************/
-    @RequestMapping(value="",method=RequestMethod.GET)
+    @RequestMapping(value="/",method=RequestMethod.GET)
     public ModelAndView getList(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem, @CurrentUser User currentUser) {
     	
     	
@@ -62,15 +67,16 @@ public class MenuItemController {
     		for (MenuItem menuitem : menuitems) {
 				al.add(menuitem);
 			}
+    		
     		if (currentUser!=null && currentUser.getRole().equalsIgnoreCase("ADMIN")) {
     			return new ModelAndView("menuitems/menulistAdmin", "menuitems", menuitems);
 			}
-
     		return new ModelAndView("menuitems/menulistUser", "menuitems", menuitems);
 		}else {
 			maxOrder = al.get(al.size()-1).getId();
 			List<MenuItem> menuitems = menuItemRepository.findWithMaxOrder(maxOrder);
 			al.addAll(menuitems);
+			
 			if (currentUser!=null && currentUser.getRole().equalsIgnoreCase("ADMIN")) {
 				return new ModelAndView("menuitems/menulistAdmin", "menuitems", al);
 			}
@@ -79,21 +85,17 @@ public class MenuItemController {
 		}
     	
     }
-    @ModelAttribute("basket")
-	private Basket getBasket() {
-		return basket;
-	}
     
     /**************     UPDATE      ***************/
     @RequestMapping(value="menu/update/{id}",method=RequestMethod.GET)
-    public ModelAndView updatePage(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm,@PathVariable String id) {
+    public ModelAndView updatePage(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm, @PathVariable String id) {
     	MenuItem menuItem = menuItemRepository.findOne(Long.parseLong(id));
 		return new ModelAndView("menuitems/menulistUpdate", "menuItems", menuItem);
     }
     
     @RequestMapping(value="menu/update",method=RequestMethod.POST)
-    public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
-    	  MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+    public ModelAndView updateMenuItem(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm ) throws UnsupportedEncodingException {
+    	  MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	  menuItem.setName(menuItemForm.getName());
     	  menuItem.setHotPrice(menuItemForm.getHotPrice());
     	  menuItem.setIcePrice(menuItemForm.getIcePrice());
@@ -102,8 +104,8 @@ public class MenuItemController {
     	  menuItem.setRecommend(menuItemForm.getRecommend());
     	  menuItem.setOriginal(menuItemForm.getOriginal());
     	  menuItem.setMinToPrepare(menuItemForm.getMinToPrepare());
-    	 menuItemRepository.save(menuItem);
-    	 return new ModelAndView("menuitems/menulistUpdate", "menuItems", menuItem);
+    	  menuItemRepository.save(menuItem);
+    	  return new ModelAndView("menuitems/menulistUpdate", "menuItems", menuItem);
     }
     
     /**************     DELETE      ***************/
@@ -114,9 +116,14 @@ public class MenuItemController {
     }
     
     @RequestMapping(value="menu/delete",method=RequestMethod.POST)
-    public String deleteMenuItem(@ModelAttribute(value="menuItemForm")MenuItemForm menuItemForm ) {
-    	 MenuItem menuItem = menuItemRepository.findByName(menuItemForm.getName());
+    public String deleteMenuItem(@ModelAttribute(value="menuItemForm") MenuItemForm menuItemForm ) {
+    	 MenuItem menuItem = menuItemRepository.findOne(menuItemForm.getId());
     	 menuItemRepository.delete(menuItem);
     	 return "redirect:/";
     }
+    
+    @ModelAttribute("basket")
+	private Basket getBasket() {
+		return basket;
+	}
 }

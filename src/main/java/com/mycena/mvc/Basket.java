@@ -33,9 +33,12 @@ public class Basket  implements Serializable {
 	
 	public MenuItemForm add(MenuItemForm item) {
 		UUID uuid = UUID.randomUUID();
-		item.setId(uuid);
-		System.out.println(uuid);
-		items.put(item.getId(), item);
+		//item.setId(uuid);
+		item.setUid(uuid);
+		//System.out.println(uuid);
+		//items.put(item.getId(), item);
+		System.out.println(item.getUid());
+		items.put(item.getUid(), item);
 		return item;
 	}
 
@@ -45,10 +48,10 @@ public class Basket  implements Serializable {
 	}
 
 	
-	public MenuItemForm findById(String key) {
-		
-		return null;
-	}
+//	public MenuItemForm findById(String key) {
+//		
+//		return null;
+//	}
 
 	
 	public List<MenuItemForm> findAll() {

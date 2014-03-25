@@ -1,23 +1,17 @@
 package com.mycena.mvc;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycena.data.MenuItemRepository;
-import com.mycena.data.OrderList;
 import com.mycena.data.OrderListRepository;
 import com.mycena.data.OrderRepository;
-import com.mycena.data.Orders;
-import com.mycena.mvc.utils.ParseCondimentToString;
+import com.mycena.mvc.utils.StringParser.ParserOperte;
+import com.mycena.mvc.utils.StringParser.operate.IceValueParserOperate;
+import com.mycena.mvc.utils.StringParser.operate.SugerValueParserOperate;
 
 
 
@@ -32,12 +26,16 @@ public class BasketController {
 	private OrderRepository orderRepository;
 	@Autowired
 	private MenuItemRepository menuItemRepository;
+	
+	ParserOperte IceValueParserOperate = new IceValueParserOperate();
+	ParserOperte SugerValueParserOperate = new SugerValueParserOperate();
 
 	@RequestMapping(value = "/removeFromBasket" , method = RequestMethod.POST)
 	
 	public String remove(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Remove {} from the basket", menuItem.getId());
-		basket.delete(menuItem.getId());
+		System.out.println(menuItem.getUid());
+		basket.delete(menuItem.getUid());
 		return "redirect:/showBasket";
 	}
 	
@@ -45,11 +43,13 @@ public class BasketController {
 	public String add(@ModelAttribute(value="menuItemForm") MenuItemForm menuItem) {
 		//LOG.debug("Add {} from the basket", menuItem.getId());
 		menuItem.setPrice(countPrice(menuItem));
-		menuItem.setIce(ParseCondimentToString.iceToString(menuItem.getIce()));
+		menuItem.setIce(IceValueParserOperate.webStringParser(menuItem.getIce()));
 		menuItem.setQuantity(menuItem.getQuantity());
-		menuItem.setSweetness(ParseCondimentToString.sweetnessToString(menuItem.getSweetness()));
+		menuItem.setSweetness(SugerValueParserOperate.webStringParser(menuItem.getSweetness()));
 		menuItem.setMinToPrepare(menuItemRepository.findByName(menuItem.getName()).getMinToPrepare()*menuItem.getQuantity());
 		basket.add(menuItem);
+		System.out.println(basket.getItems().get(0).getUid());
+		
 		return "redirect:/";
 	}
 	

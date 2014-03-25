@@ -35,13 +35,13 @@ public class MenuItem {
 	public Long getId() {		return id;	}
 	public void setId(Long id) {		this.id = id;	}
 	public String getName() {		return name;	 }
-	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes("ISO-8859-1"),"UTF-8");	}
+	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes(),"UTF-8");	}
 	public double getHotPrice() {		return hotPrice;	}
 	public void setHotPrice(double hotPrice) {		this.hotPrice = hotPrice;	}
 	public double getIcePrice() {		return icePrice;	}
 	public void setIcePrice(double icePrice) {		this.icePrice = icePrice;	}
 	public String getTag() {		return tag;	}
-	public void setTag(String tag) throws UnsupportedEncodingException {		this.tag = new String(tag.getBytes("ISO-8859-1"),"UTF-8");	}
+	public void setTag(String tag) throws UnsupportedEncodingException {		this.tag = new String(tag.getBytes(),"UTF-8");	}
 	public Date getCdate() {		return cdate;	 }
 	public void setCdate(Date cdate) {		this.cdate = cdate;	}
 	public int getRecommend() {	return recommend;	}

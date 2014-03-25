@@ -10,7 +10,7 @@ import com.mycena.data.Orders;
 
 public class MenuItemForm {
 	//@NotEmpty(message = "name is required.")
-    private UUID id;
+    private long id;
 	
 	//@NotEmpty(message = "name is required.")
     private String name;
@@ -60,8 +60,8 @@ public class MenuItemForm {
 	public void setSweetness(String sweetness) {		this.sweetness = sweetness;	}
 	public String getIce() {		return ice;	}	
 	public void setIce(String ice) {		this.ice = ice;	}
-	public UUID getId() {		return id;	}
-	public void setId(UUID id) {		this.id = id;	}
+	public long getId() {		return id;	}
+	public void setId(long id) {		this.id = id;	}
 	public String getName() {	return name;	}
 	public void setName(String name) throws UnsupportedEncodingException {		this.name = new String(name.getBytes("ISO-8859-1"),"UTF-8");	}
 	public double getHotPrice() {		return hotPrice;	}
