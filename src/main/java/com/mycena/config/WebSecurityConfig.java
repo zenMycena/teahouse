@@ -37,7 +37,7 @@ public class WebSecurityConfig
 		http
 		 .csrf().disable()
 		 .authorizeRequests()
-		 	.antMatchers("/resources/**", "/signup", "/").permitAll()
+		 	.antMatchers("/resources/**", "/user/create", "/").permitAll()
 		 	.anyRequest().authenticated()
 		 	.and()
 		 .formLogin()
