@@ -63,9 +63,9 @@ public class DataConfiguration {
 		//setting database path, driver, account 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/teapatea?characterEncoding=UTF-8");
-		dataSource.setUsername("root");
-		dataSource.setPassword("toor");
+		dataSource.setUrl("jdbc:mysql://127.2.236.130:3306/teahouse?characterEncoding=UTF-8");
+		dataSource.setUsername("admin3ueqdAc");
+		dataSource.setPassword("CQwsukJFwsNU");
 		return dataSource;
 	  }
 
