@@ -1,0 +1,12 @@
+applications:
+- name: TeaHouse
+  memory: 512M
+  host: TeaHouse
+  domain: cfapps.io
+  services:
+    mysqldb:
+      label: cleardb
+      version: n/a
+      plan: spark
+      provider: cleardb
+  buildpack: https://github.com/cloudfoundry/java-buildpack
